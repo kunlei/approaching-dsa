@@ -1,0 +1,15 @@
+/.quarto/
+_book/
+.quarto/
+
+GurobiEnv
+
+.DS_Store
+MasterEnv
+SubprobEnv
+
+*.aux
+*.log
+*.pdf
+*.toc
+*.tex
