@@ -1,0 +1,72 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Approaching Data Structure and Algorithm",
+    "section": "",
+    "text": "Preface\nData structure and algorithm.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Two Pointers",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#two-pointers",
+    "href": "intro.html#two-pointers",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "27. Remove Element\n26. Remove Duplicates from Sorted Array\n1. Two Sum",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#sliding-window",
+    "href": "intro.html#sliding-window",
+    "title": "1  Introduction",
+    "section": "1.2 Sliding Window",
+    "text": "1.2 Sliding Window",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#tree",
+    "href": "intro.html#tree",
+    "title": "1  Introduction",
+    "section": "1.3 Tree",
+    "text": "1.3 Tree",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#backtracking",
+    "href": "intro.html#backtracking",
+    "title": "1  Introduction",
+    "section": "1.4 Backtracking",
+    "text": "1.4 Backtracking",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#dynamic-programming",
+    "href": "intro.html#dynamic-programming",
+    "title": "1  Introduction",
+    "section": "1.5 Dynamic Programming",
+    "text": "1.5 Dynamic Programming",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  }
+]
