@@ -14,7 +14,17 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Two Pointers",
+    "text": "1.1 Interesting Algorithms\nBoyer-Moore Majority Voting Algorithm",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#interesting-algorithms",
+    "href": "intro.html#interesting-algorithms",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "169. Majority Element",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -23,8 +33,8 @@
     "objectID": "intro.html#two-pointers",
     "href": "intro.html#two-pointers",
     "title": "1  Introduction",
-    "section": "",
-    "text": "27. Remove Element\n26. Remove Duplicates from Sorted Array\n1. Two Sum\n283. Move Zeroes\n844. Backspace String Compare\n977. Squares of a Sorted Array\n344. Reverse String\n151. Reverse Words in a String\n206. Reverse Linked List\n19. Remove Nth Node From End of List\n160. Intersection of Two Linked Lists\n142. Linked List Cycle II\n15. 3Sum\n18. 4Sum\n2. Add Two Numbers\n169. Majority Element\n217. Contains Duplicate\n53. Maximum Subarray\n9. Palindrome Number\n13. Roman to Integer",
+    "section": "1.2 Two Pointers",
+    "text": "1.2 Two Pointers\n\n27. Remove Element\n26. Remove Duplicates from Sorted Array\n1. Two Sum\n15. 3Sum\n18. 4Sum\n283. Move Zeroes\n844. Backspace String Compare\n977. Squares of a Sorted Array\n344. Reverse String\n151. Reverse Words in a String\n206. Reverse Linked List\n19. Remove Nth Node From End of List\n160. Intersection of Two Linked Lists\n142. Linked List Cycle II\n2. Add Two Numbers\n217. Contains Duplicate\n53. Maximum Subarray\n9. Palindrome Number\n13. Roman to Integer",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -33,8 +43,8 @@
     "objectID": "intro.html#sliding-window",
     "href": "intro.html#sliding-window",
     "title": "1  Introduction",
-    "section": "1.2 Sliding Window",
-    "text": "1.2 Sliding Window",
+    "section": "1.3 Sliding Window",
+    "text": "1.3 Sliding Window",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -43,8 +53,8 @@
     "objectID": "intro.html#tree",
     "href": "intro.html#tree",
     "title": "1  Introduction",
-    "section": "1.3 Tree",
-    "text": "1.3 Tree",
+    "section": "1.4 Tree",
+    "text": "1.4 Tree",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -53,8 +63,8 @@
     "objectID": "intro.html#backtracking",
     "href": "intro.html#backtracking",
     "title": "1  Introduction",
-    "section": "1.4 Backtracking",
-    "text": "1.4 Backtracking",
+    "section": "1.5 Backtracking",
+    "text": "1.5 Backtracking",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -63,8 +73,8 @@
     "objectID": "intro.html#dynamic-programming",
     "href": "intro.html#dynamic-programming",
     "title": "1  Introduction",
-    "section": "1.5 Dynamic Programming",
-    "text": "1.5 Dynamic Programming",
+    "section": "1.6 Dynamic Programming",
+    "text": "1.6 Dynamic Programming",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
