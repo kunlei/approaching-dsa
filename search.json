@@ -50,11 +50,21 @@
     ]
   },
   {
+    "objectID": "intro.html#binary-search",
+    "href": "intro.html#binary-search",
+    "title": "1  Introduction",
+    "section": "1.4 Binary Search",
+    "text": "1.4 Binary Search\n\n704. Binary Search\n278. First Bad Version\n1011. Capacity To Ship Packages Within D Days\n2187. Minimum Time to Complete Trips\n875. Koko Eating Bananas\n34. Find First and Last Position of Element in Sorted Array\n74. Search a 2D Matrix\n153. Find Minimum in Rotated Sorted Array\n33. Search in Rotated Sorted Array\n981. Time Based Key-Value Store\n4. Median of Two Sorted Arrays\n2089. Find Target Indices After Sorting Array",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
     "objectID": "intro.html#tree",
     "href": "intro.html#tree",
     "title": "1  Introduction",
-    "section": "1.4 Tree",
-    "text": "1.4 Tree",
+    "section": "1.5 Tree",
+    "text": "1.5 Tree",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -63,8 +73,8 @@
     "objectID": "intro.html#backtracking",
     "href": "intro.html#backtracking",
     "title": "1  Introduction",
-    "section": "1.5 Backtracking",
-    "text": "1.5 Backtracking",
+    "section": "1.6 Backtracking",
+    "text": "1.6 Backtracking",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -73,10 +83,21 @@
     "objectID": "intro.html#dynamic-programming",
     "href": "intro.html#dynamic-programming",
     "title": "1  Introduction",
-    "section": "1.6 Dynamic Programming",
-    "text": "1.6 Dynamic Programming",
+    "section": "1.7 Dynamic Programming",
+    "text": "1.7 Dynamic Programming",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "binary-search.html",
+    "href": "binary-search.html",
+    "title": "2  Binary Search",
+    "section": "",
+    "text": "Template that works for ALL binary search problems Using this template you don’t have to worry about less than or equal to, return lo or lo + 1 etc. Just replace if nums[mid] &gt;= target with whatever condition you want and you can solve any minimization/maximization problem where all false answers appear before or after all true ones (Koko eating bananas, capacity to ship in D days, etc.) I didn’t invent this.\ndef search(self, nums: List[int], target: int) -&gt; int:\n    lo, hi = 0, len(nums) - 1\n    while lo &lt; hi:\n        mid = (lo + hi) // 2\n        if nums[mid] &gt;= target:\n            hi = mid\n        else:\n            lo = mid + 1\n\n    if nums[lo] == target:\n        return lo\n    else:\n        return -1\nWhy it works\nStandard Approach\ndef search(self, nums: List[int], target: int) -&gt; int:\n    lo, hi = 0, len(nums) - 1\n    while lo &lt; hi:\n        mid = (lo + hi) // 2\n        if nums[mid] &gt;= target:\n            hi = mid\n        else:\n            lo = mid + 1\n\n    if nums[lo] == target:\n        return lo\n    else:\n        return -1\nTemplate\ndef binary_search(array) -&gt; int:\n    def condition(value) -&gt; bool:\n        pass\n\n    left, right = 0, len(array) - 1\n    while left &lt; right:\n        mid = (left+right) // 2 \n        if condition(mid):\n            right = mid\n        else:\n            left = mid + 1\n    return left\nI did not invent this\nMinimize (or maximize) k wrt condition(k)=True\nMake up to 2 changes:\nInitialize left and right such that all possible elements are included. Is it return left or return left-1? If maximize, change the template to left-1 and if not condition If we’re not given some array: If we can discover some kind of monotonicity, for example, if condition(k) is True then condition(k + 1) is True, then we can consider binary search.\nBinary Search (el classico)\n   def search(self, nums: List[int], target: int) -&gt; int:\n        lo, hi = 0, len(nums) - 1\n        while lo &lt; hi:\n            mid = (lo + hi) // 2\n            if nums[mid] &gt;= target:\n                hi = mid\n            else:\n                lo = mid + 1\n\n        if nums[lo] == target:\n            return lo\n        else:\n            return -1\nKEY INTUITION: condition is NOT nums[mid] == target. It’s &gt;= because with advanced template we need to minimize/maximize; it must apply to all above/below\nSearch Insert Position\n# Template\n# minimize index such that nums[index] &gt;= target\n# bounds: 0, len(nums)\n#   * len(nums) bc we may need to place after the last element in the array\n# condition: nums[index] == target\ndef searchInsert(self, nums: List[int], target: int) -&gt; int:\n   lo, hi = 0, len(nums)\n   while lo &lt; hi:\n       mid = (lo + hi) // 2\n       if nums[mid] &gt;= target:\n           hi = mid\n       else:\n           lo = mid + 1\n\n   return lo\nFirst Bad Version # applying advanced template: # reformulate problem: find the minimal k that satisfies condition # include all versions: lo=1, hi=n # return lo because it is minimal k satisfying condition # condition is already defined\ndef firstBadVersion3(self, n: int) -&gt; int:  # beats 95%/95%!\n   lo, hi = 1, n\n   while lo &lt; hi:\n       mid = (lo+hi) // 2\n       if isBadVersion(mid):\n           hi = mid\n       else:\n           lo = mid + 1\n\n   return lo\nSquare Root # find maximal n such that n^2 &lt;= x # bounds: lo=0, hi=x # condition: n^2 &lt;= x # maximize: lo-1 and not conditon\ndef mySqrt(self, x: int):\n   if x in (0, 1):\n       return x\n   lo, hi = 0, x\n   while lo &lt; hi:\n       mid = (lo + hi) // 2\n       if not mid * mid &lt;= x:\n           hi = mid\n       else:\n           lo = mid + 1\n   return lo - 1\nCapacity to Ship Packages Within D Days # advanced binary search template # we want the minimal weight that satisfies the days requirement (ship all packages within D days) # monotonicity: if we can successfully ship all packages within D days with capacity m, then we can also ship them for any m2 &gt; m # condition: can_ship(x) –&gt; returns whether it’s possible to ship all packages within D days # bounds: capacity ≥ max(weights) or else that package would get stuck. # capacity ≤ sum(weights), as any value over that we just ship all in 1 day\ndef shipWithinDays(self, weights: List[int], days: int) -&gt; int:\n   def can_ship(capacity):\n       d, total = 1, 0\n       for w in weights:\n           total += w\n           # if it's too heavy so we need to wait for the next day\n           if total &gt; capacity:\n               d += 1  # go to next day\n               total = w\n               # the amount of days required is more than we are allowed\n               if d &gt; days:\n                   return False\n       return True\n\n   lo, hi = max(weights), sum(weights)\n   while lo &lt; hi:\n       mid = (lo + hi) // 2\n       if can_ship(mid):\n           hi = mid\n       else:\n           lo = mid + 1\n\n   return lo\nMinimum Time to Complete Trips # minimum total time such that trips &gt;= totaltrips # * if it’s valid for totaltime+n, then it’s valid for totaltime+n-1 etc # bounds: # * minimum=1 # * maximum=totalTrips*min(time) bc worst case scenario, it will take totalTrips trips of the min time bus to reach total trips\ndef minimumTime(self, time: List[int], totalTrips: int) -&gt; int:\n   def valid_time(t):\n       ans = 0\n       for i in time:\n           ans += t // i\n           if ans &gt;= totalTrips:\n               return True\n       return False\n\n   lo, hi = 1, min(time) * totalTrips\n   while lo &lt; hi:\n       mid = (lo + hi) // 2\n       if valid_time(mid):\n           hi = mid\n       else:\n           lo = mid + 1\n\n   return lo\nKoko Eating Bananas # minimize k such that within h hours every pile is eaten # for any k that works, k+1 etc works, for any k that doesn’t work, k-1 etc doesn’t work: binary search # bounds # * min: 1 - if u can only eat at 1/h that’s ideal # * max: max(piles) - u never need to eat more per h than the max pile\ndef minEatingSpeed(self, piles: List[int], h: int) -&gt; int:\n   def can_eat(b):\n       hours = 0\n       for p in piles:\n           hours += math.ceil(p/b)\n           if hours &gt; h:\n               return False\n\n       return hours &lt;= h\n\n   lo, hi = 1, max(piles)\n   while lo &lt; hi:\n       mid = (lo + hi) // 2\n       if can_eat(mid):\n           hi = mid\n       else:\n           lo = mid + 1",
+    "crumbs": [
+      "Binary Search",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Binary Search</span>"
     ]
   }
 ]
