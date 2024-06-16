@@ -236,7 +236,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions"><span class="header-section-number">4.1</span> Questions</a></li>
+  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">4.2</span> Reference</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -260,12 +267,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>A list of practice questions:</p>
+<section id="questions" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">4.1</span> Questions</h2>
 <ol type="1">
 <li><a href="https://leetcode.com/problems/binary-search">704. Binary Search</a></li>
 <li><a href="https://leetcode.com/problems/first-bad-version/description/">278. First Bad Version</a></li>
 <li><a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/">1011. Capacity To Ship Packages Within D Days</a></li>
 <li><a href="https://leetcode.com/problems/minimum-time-to-complete-trips/description/">2187. Minimum Time to Complete Trips</a></li>
+<li><a href="https://leetcode.com/problems/sqrtx/description/">69. Sqrt(x)</a></li>
+<li><a href="https://leetcode.com/problems/search-insert-position/description/">35. Search Insert Position</a></li>
+<li><a href="https://leetcode.com/problems/split-array-largest-sum/description/">410. Split Array Largest Sum</a></li>
+<li><a href="https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/">1482. Minimum Number of Days to Make m Bouquets</a></li>
+<li><a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/description/">668. Kth Smallest Number in Multiplication Table</a></li>
+<li><a href="https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/">719. Find K-th Smallest Pair Distance</a></li>
+<li><a href="https://leetcode.com/problems/ugly-number-iii/description/">1201. Ugly Number III</a></li>
+<li><a href="https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/">1283. Find the Smallest Divisor Given a Threshold</a></li>
 <li><a href="https://leetcode.com/problems/koko-eating-bananas/description/">875. Koko Eating Bananas</a></li>
 <li><a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/">34. Find First and Last Position of Element in Sorted Array</a></li>
 <li><a href="https://leetcode.com/problems/search-a-2d-matrix/description/">74. Search a 2D Matrix</a></li>
@@ -275,169 +291,16 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/">4. Median of Two Sorted Arrays</a></li>
 <li><a href="https://leetcode.com/problems/find-target-indices-after-sorting-array/description/">2089. Find Target Indices After Sorting Array</a></li>
 </ol>
-<p>Template that works for ALL binary search problems Using this template you don’t have to worry about less than or equal to, return lo or lo + 1 etc. Just replace if nums[mid] &gt;= target with whatever condition you want and you can solve any minimization/maximization problem where all false answers appear before or after all true ones (Koko eating bananas, capacity to ship in D days, etc.) I didn’t invent this.</p>
-<pre><code>def search(self, nums: List[int], target: int) -&gt; int:
-    lo, hi = 0, len(nums) - 1
-    while lo &lt; hi:
-        mid = (lo + hi) // 2
-        if nums[mid] &gt;= target:
-            hi = mid
-        else:
-            lo = mid + 1
-
-    if nums[lo] == target:
-        return lo
-    else:
-        return -1</code></pre>
-<p>Why it works</p>
-<p>Standard Approach</p>
-<pre><code>def search(self, nums: List[int], target: int) -&gt; int:
-    lo, hi = 0, len(nums) - 1
-    while lo &lt; hi:
-        mid = (lo + hi) // 2
-        if nums[mid] &gt;= target:
-            hi = mid
-        else:
-            lo = mid + 1
-
-    if nums[lo] == target:
-        return lo
-    else:
-        return -1</code></pre>
-<p>Template</p>
-<pre><code>def binary_search(array) -&gt; int:
-    def condition(value) -&gt; bool:
-        pass
-
-    left, right = 0, len(array) - 1
-    while left &lt; right:
-        mid = (left+right) // 2 
-        if condition(mid):
-            right = mid
-        else:
-            left = mid + 1
-    return left</code></pre>
-<p>I did not invent this</p>
-<p>Minimize (or maximize) k wrt condition(k)=True</p>
-<p>Make up to 2 changes:</p>
-<p>Initialize left and right such that all possible elements are included. Is it return left or return left-1? If maximize, change the template to left-1 and if not condition If we’re not given some array: If we can discover some kind of monotonicity, for example, if condition(k) is True then condition(k + 1) is True, then we can consider binary search.</p>
-<p>Binary Search (el classico)</p>
-<pre><code>   def search(self, nums: List[int], target: int) -&gt; int:
-        lo, hi = 0, len(nums) - 1
-        while lo &lt; hi:
-            mid = (lo + hi) // 2
-            if nums[mid] &gt;= target:
-                hi = mid
-            else:
-                lo = mid + 1
-
-        if nums[lo] == target:
-            return lo
-        else:
-            return -1</code></pre>
-<p>KEY INTUITION: condition is NOT nums[mid] == target. It’s &gt;= because with advanced template we need to minimize/maximize; it must apply to all above/below</p>
-<p>Search Insert Position</p>
-<pre><code># Template
-# minimize index such that nums[index] &gt;= target
-# bounds: 0, len(nums)
-#   * len(nums) bc we may need to place after the last element in the array
-# condition: nums[index] == target
-def searchInsert(self, nums: List[int], target: int) -&gt; int:
-   lo, hi = 0, len(nums)
-   while lo &lt; hi:
-       mid = (lo + hi) // 2
-       if nums[mid] &gt;= target:
-           hi = mid
-       else:
-           lo = mid + 1
-
-   return lo</code></pre>
-<p>First Bad Version # applying advanced template: # reformulate problem: find the minimal k that satisfies condition # include all versions: lo=1, hi=n # return lo because it is minimal k satisfying condition # condition is already defined</p>
-<pre><code>def firstBadVersion3(self, n: int) -&gt; int:  # beats 95%/95%!
-   lo, hi = 1, n
-   while lo &lt; hi:
-       mid = (lo+hi) // 2
-       if isBadVersion(mid):
-           hi = mid
-       else:
-           lo = mid + 1
-
-   return lo</code></pre>
-<p>Square Root # find maximal n such that n^2 &lt;= x # bounds: lo=0, hi=x # condition: n^2 &lt;= x # maximize: lo-1 and not conditon</p>
-<pre><code>def mySqrt(self, x: int):
-   if x in (0, 1):
-       return x
-   lo, hi = 0, x
-   while lo &lt; hi:
-       mid = (lo + hi) // 2
-       if not mid * mid &lt;= x:
-           hi = mid
-       else:
-           lo = mid + 1
-   return lo - 1</code></pre>
-<p>Capacity to Ship Packages Within D Days # advanced binary search template # we want the minimal weight that satisfies the days requirement (ship all packages within D days) # monotonicity: if we can successfully ship all packages within D days with capacity m, then we can also ship them for any m2 &gt; m # condition: can_ship(x) –&gt; returns whether it’s possible to ship all packages within D days # bounds: capacity ≥ max(weights) or else that package would get stuck. # capacity ≤ sum(weights), as any value over that we just ship all in 1 day</p>
-<pre><code>def shipWithinDays(self, weights: List[int], days: int) -&gt; int:
-   def can_ship(capacity):
-       d, total = 1, 0
-       for w in weights:
-           total += w
-           # if it's too heavy so we need to wait for the next day
-           if total &gt; capacity:
-               d += 1  # go to next day
-               total = w
-               # the amount of days required is more than we are allowed
-               if d &gt; days:
-                   return False
-       return True
-
-   lo, hi = max(weights), sum(weights)
-   while lo &lt; hi:
-       mid = (lo + hi) // 2
-       if can_ship(mid):
-           hi = mid
-       else:
-           lo = mid + 1
-
-   return lo</code></pre>
-<p>Minimum Time to Complete Trips # minimum total time such that trips &gt;= totaltrips # * if it’s valid for totaltime+n, then it’s valid for totaltime+n-1 etc # bounds: # * minimum=1 # * maximum=totalTrips*min(time) bc worst case scenario, it will take totalTrips trips of the min time bus to reach total trips</p>
-<pre><code>def minimumTime(self, time: List[int], totalTrips: int) -&gt; int:
-   def valid_time(t):
-       ans = 0
-       for i in time:
-           ans += t // i
-           if ans &gt;= totalTrips:
-               return True
-       return False
-
-   lo, hi = 1, min(time) * totalTrips
-   while lo &lt; hi:
-       mid = (lo + hi) // 2
-       if valid_time(mid):
-           hi = mid
-       else:
-           lo = mid + 1
-
-   return lo</code></pre>
-<p>Koko Eating Bananas # minimize k such that within h hours every pile is eaten # for any k that works, k+1 etc works, for any k that doesn’t work, k-1 etc doesn’t work: binary search # bounds # * min: 1 - if u can only eat at 1/h that’s ideal # * max: max(piles) - u never need to eat more per h than the max pile</p>
-<pre><code>def minEatingSpeed(self, piles: List[int], h: int) -&gt; int:
-   def can_eat(b):
-       hours = 0
-       for p in piles:
-           hours += math.ceil(p/b)
-           if hours &gt; h:
-               return False
-
-       return hours &lt;= h
-
-   lo, hi = 1, max(piles)
-   while lo &lt; hi:
-       mid = (lo + hi) // 2
-       if can_eat(mid):
-           hi = mid
-       else:
-           lo = mid + 1</code></pre>
+</section>
+<section id="reference" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="reference"><span class="header-section-number">4.2</span> Reference</h2>
+<ul>
+<li><a href="https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems">https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems</a></li>
+<li><a href="https://leetcode.com/problems/binary-search/solutions/423162/Binary-Search-101-The-Ultimate-Binary-Search-Handbook/">Binary Search 101 The-Ultimate-Binary-Search-Handbook</a></li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
