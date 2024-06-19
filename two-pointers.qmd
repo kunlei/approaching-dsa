@@ -1,12 +1,4 @@
-# Introduction
-
-## Interesting Algorithms
-
-
-
-
-
-## Two Pointers
+# Two Pointers
 
 1. [27. Remove Element](https://leetcode.com/problems/remove-element/)
 2. [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)
@@ -27,33 +19,5 @@
 17. [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/description/)
 18. [9. Palindrome Number](https://leetcode.com/problems/palindrome-number/description/)
 19. [13. Roman to Integer](https://leetcode.com/problems/roman-to-integer/description/)
-
-
-
-## Sliding Window
-
-
-## Binary Search
-
-1. [704. Binary Search](https://leetcode.com/problems/binary-search)
-2. [278. First Bad Version](https://leetcode.com/problems/first-bad-version/description/)
-3. [1011. Capacity To Ship Packages Within D Days](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/)
-4. [2187. Minimum Time to Complete Trips](https://leetcode.com/problems/minimum-time-to-complete-trips/description/)
-5. [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)
-6. [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/)
-7. [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
-8. [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
-9. [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
-10. [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/description/)
-11. [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
-12. [2089. Find Target Indices After Sorting Array](https://leetcode.com/problems/find-target-indices-after-sorting-array/description/)
-
-## Tree
-
-
-## Backtracking
-
-
-## Dynamic Programming
 
 

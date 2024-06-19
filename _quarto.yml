@@ -2,12 +2,31 @@ project:
   type: book
 
 book:
-  title: "Approaching Data Structure and Algorithm"
+  title: "Approaching Data Structure and Algorithms"
   author: "Kunlei Lian"
-  date: "5/25/2023"
+  date: "8/9/2023"
   chapters:
     - index.qmd
     - intro.qmd
+    - part: "Special Algorithms"
+      chapters: 
+        - moore-voting-algorithm.qmd
+        - gcd-euclidean-algorithm.qmd
+    - part: "Two Pointers"
+      chapters: 
+        - two-pointers.qmd
+    - part: "Sliding Window"
+      chapters: 
+        - sliding-window.qmd
+    - part: "Binary Search"
+      chapters: 
+        - binary-search.qmd
+    - part: "Trees"
+      chapters: 
+        - trees.qmd
+    - part: "Dynamic Programming"
+      chapters: 
+        - dp.qmd
     - summary.qmd
     - references.qmd
 

@@ -1,3 +1,6 @@
 # Preface {.unnumbered}
 
-Data structure and algorithm.
+Solving optimization problems is my passion, but in my work, building mathematical models typically doesn't take much time. Instead, I spend most of my time implementing and fine-tuning various algorithms to solve real-world problems. I take great pleasure in transforming optimization models into software products, which requires proficient coding skills.
+
+Java used to be my favorite programming language, but now Python is my second favorite, especially as I delve deeper into machine learning projects in recent years. 
+I created this personal notebook to document my journey in improving my skills in data structures and algorithms, as well as to continue honing my Java and Python expertise.

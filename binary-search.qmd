@@ -1,0 +1,34 @@
+# Binary Search
+
+## Questions
+
+
+1. [704. Binary Search](https://leetcode.com/problems/binary-search)
+2. [278. First Bad Version](https://leetcode.com/problems/first-bad-version/description/)
+3. [1011. Capacity To Ship Packages Within D Days](https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/)
+4. [2187. Minimum Time to Complete Trips](https://leetcode.com/problems/minimum-time-to-complete-trips/description/)
+5. [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/description/)
+6. [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/description/)
+7. [410. Split Array Largest Sum](https://leetcode.com/problems/split-array-largest-sum/description/)
+8. [1482. Minimum Number of Days to Make m Bouquets](https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/)
+9. [668. Kth Smallest Number in Multiplication Table](https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/description/)
+10. [719. Find K-th Smallest Pair Distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/)
+11. [1201. Ugly Number III](https://leetcode.com/problems/ugly-number-iii/description/)
+12. [1283. Find the Smallest Divisor Given a Threshold](https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/)
+13. [875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)
+14. [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/)
+15. [74. Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/description/)
+16. [153. Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+17. [33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/description/)
+18. [981. Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/description/)
+19. [4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)
+20. [2089. Find Target Indices After Sorting Array](https://leetcode.com/problems/find-target-indices-after-sorting-array/description/)
+
+
+
+## Reference
+
+- [https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems](https://leetcode.com/discuss/general-discussion/786126/python-powerful-ultimate-binary-search-template-solved-many-problems)
+- [Binary Search 101 The-Ultimate-Binary-Search-Handbook](https://leetcode.com/problems/binary-search/solutions/423162/Binary-Search-101-The-Ultimate-Binary-Search-Handbook/)
+
+

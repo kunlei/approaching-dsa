@@ -1,0 +1,45 @@
+# Boyer-Moore Majority Voting Algorithm
+
+The Boyer-Moore Majority Voting Algorithm is a linear time algorithm to find the majority element in an array, if one exists. 
+A majority element in an array of size `n` is an element that appears more than $\frac{n}{2}$ times.
+
+## Leetcode Problems
+
+1. [169. Majority Element](https://leetcode.com/problems/majority-element/description/) 
+
+## Implementations
+
+Below is an Java implementation of the algorithm.
+
+```{.java}
+public int findMajorityElement(int[] nums) {
+    // First Pass to find the candidate
+    int candidate = 0;
+    int count = 0;
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+            count = 1;
+        } else if (num == candidate) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+
+    // Second Pass to verify if the candidate is the majority element
+    count = 0;
+    for (int num : nums) {
+        if (num == candidate) {
+            count++;
+        }
+    }
+
+    // If the candidate is indeed the majority element
+    if (count > nums.length / 2) {
+        return candidate;
+    } else {
+        throw new IllegalArgumentException("No majority element found");
+    }
+}
+```

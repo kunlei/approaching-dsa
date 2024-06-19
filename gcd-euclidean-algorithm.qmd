@@ -1,0 +1,58 @@
+# Euclidean Algorithm to Find Greatest Common Divisor (GCD)
+
+The greatest common divisor (GCD) of two integers is the largest positive integer that divides both of the integers without leaving a remainder. In other words, it's the greatest number that is a common factor of both numbers.
+
+## Leetcode Problems
+
+1. [1979. Find Greatest Common Divisor of Array](https://leetcode.com/problems/find-greatest-common-divisor-of-array/description/)
+2. [1201. Ugly Number III](https://leetcode.com/problems/ugly-number-iii/description/)
+
+## Example
+
+Let's take two integers, say 24 and 36:
+
+1. The factors of 24 are: 1, 2, 3, 4, 6, 8, 12, 24.
+2. The factors of 36 are: 1, 2, 3, 4, 6, 9, 12, 18, 36.
+3. The common factors are: 1, 2, 3, 4, 6, 12.
+
+Out of these, the greatest one is 12. So, the GCD of 24 and 36 is 12.
+
+## Euclidean Algorithm
+
+The Euclidean algorithm is a well-known method for finding the GCD of two numbers. It is based on the principle that the GCD of two numbers also divides their difference. Here's how it works:
+
+1. Given two numbers `a` and `b`, replace `a` with `b` and `b` with the remainder of the division of `a` by `b` (`a % b`).
+2. Repeat this process until `b` becomes 0.
+3. The GCD is the non-zero number remaining.
+
+## Steps in the Euclidean Algorithm
+
+For example, let's find the GCD of 48 and 18 using the Euclidean algorithm:
+
+1. Initial values: a = 48, b = 18.
+2. Compute 48 % 18, which is 12. Update a to 18 and b to 12.
+3. Compute 18 % 12, which is 6. Update a to 12 and b to 6.
+4. Compute 12 % 6, which is 0. Update a to 6 and b to 0.
+5. Now, b is 0, so the GCD is the current value of a, which is 6.
+
+
+In summary, the GCD of two integers is the largest integer that divides both of them without leaving a remainder, and it can be efficiently computed using the Euclidean algorithm.
+
+## Implementations
+
+Below is an implementation of the algorithm in Java:
+
+```{.java}
+// Function to return the greatest common divisor of a and b
+public long gcd(long a, long b) {
+    // Continue the loop until b becomes 0
+    while (b != 0) {
+        // Swap a with b and b with the remainder of a divided by b
+        long temp = b;
+        b = a % b;
+        a = temp;
+    }
+    // The GCD is stored in a
+    return a;
+}
+```
