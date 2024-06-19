@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Approaching Data Structure and Algorithms - 9&nbsp; Summary</title>
+<title>Approaching Data Structure and Algorithms - 3&nbsp; Eucliean Algorithm to Find Greatest Common Divisor (GCD)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./dp.html" rel="prev">
+<link href="./two-pointers.html" rel="next">
+<link href="./moore-voting-algorithm.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -96,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./moore-voting-algorithm.html">Special Algorithms</a></li><li class="breadcrumb-item"><a href="./gcd-euclidean-algorithm.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Eucliean Algorithm to Find Greatest Common Divisor (GCD)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -150,7 +184,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gcd-euclidean-algorithm.html" class="sidebar-item-text sidebar-link">
+  <a href="./gcd-euclidean-algorithm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Eucliean Algorithm to Find Greatest Common Divisor (GCD)</span></span></a>
   </div>
 </li>
@@ -243,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -259,14 +293,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#leetcode-problems" id="toc-leetcode-problems" class="nav-link active" data-scroll-target="#leetcode-problems"><span class="header-section-number">3.1</span> Leetcode Problems</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example"><span class="header-section-number">3.2</span> Example</a></li>
+  <li><a href="#euclidean-algorithm" id="toc-euclidean-algorithm" class="nav-link" data-scroll-target="#euclidean-algorithm"><span class="header-section-number">3.3</span> Euclidean Algorithm</a></li>
+  <li><a href="#steps-in-the-euclidean-algorithm" id="toc-steps-in-the-euclidean-algorithm" class="nav-link" data-scroll-target="#steps-in-the-euclidean-algorithm"><span class="header-section-number">3.4</span> Steps in the Euclidean Algorithm</a></li>
+  <li><a href="#implementations" id="toc-implementations" class="nav-link" data-scroll-target="#implementations"><span class="header-section-number">3.5</span> Implementations</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./moore-voting-algorithm.html">Special Algorithms</a></li><li class="breadcrumb-item"><a href="./gcd-euclidean-algorithm.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Eucliean Algorithm to Find Greatest Common Divisor (GCD)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Eucliean Algorithm to Find Greatest Common Divisor (GCD)</span></h1>
 </div>
 
 
@@ -283,8 +327,63 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The greatest common divisor (GCD) of two integers is the largest positive integer that divides both of the integers without leaving a remainder. In other words, it’s the greatest number that is a common factor of both numbers.</p>
+<section id="leetcode-problems" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="leetcode-problems"><span class="header-section-number">3.1</span> Leetcode Problems</h2>
+<ol type="1">
+<li><a href="https://leetcode.com/problems/find-greatest-common-divisor-of-array/description/">1979. Find Greatest Common Divisor of Array</a></li>
+<li><a href="https://leetcode.com/problems/ugly-number-iii/description/">1201. Ugly Number III</a></li>
+</ol>
+</section>
+<section id="example" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="example"><span class="header-section-number">3.2</span> Example</h2>
+<p>Let’s take two integers, say 24 and 36:</p>
+<ol type="1">
+<li>The factors of 24 are: 1, 2, 3, 4, 6, 8, 12, 24.</li>
+<li>The factors of 36 are: 1, 2, 3, 4, 6, 9, 12, 18, 36.</li>
+<li>The common factors are: 1, 2, 3, 4, 6, 12.</li>
+</ol>
+<p>Out of these, the greatest one is 12. So, the GCD of 24 and 36 is 12.</p>
+</section>
+<section id="euclidean-algorithm" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="euclidean-algorithm"><span class="header-section-number">3.3</span> Euclidean Algorithm</h2>
+<p>The Euclidean algorithm is a well-known method for finding the GCD of two numbers. It is based on the principle that the GCD of two numbers also divides their difference. Here’s how it works:</p>
+<ol type="1">
+<li>Given two numbers <code>a</code> and <code>b</code>, replace <code>a</code> with <code>b</code> and <code>b</code> with the remainder of the division of <code>a</code> by <code>b</code> (<code>a % b</code>).</li>
+<li>Repeat this process until <code>b</code> becomes 0.</li>
+<li>The GCD is the non-zero number remaining.</li>
+</ol>
+</section>
+<section id="steps-in-the-euclidean-algorithm" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="steps-in-the-euclidean-algorithm"><span class="header-section-number">3.4</span> Steps in the Euclidean Algorithm</h2>
+<p>For example, let’s find the GCD of 48 and 18 using the Euclidean algorithm:</p>
+<ol type="1">
+<li>Initial values: a = 48, b = 18.</li>
+<li>Compute 48 % 18, which is 12. Update a to 18 and b to 12.</li>
+<li>Compute 18 % 12, which is 6. Update a to 12 and b to 6.</li>
+<li>Compute 12 % 6, which is 0. Update a to 6 and b to 0.</li>
+<li>Now, b is 0, so the GCD is the current value of a, which is 6.</li>
+</ol>
+<p>In summary, the GCD of two integers is the largest integer that divides both of them without leaving a remainder, and it can be efficiently computed using the Euclidean algorithm.</p>
+</section>
+<section id="implementations" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="implementations"><span class="header-section-number">3.5</span> Implementations</h2>
+<p>Below is an implementation of the algorithm in Java:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to return the greatest common divisor of a and b</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="dt">long</span> <span class="fu">gcd</span><span class="op">(</span><span class="dt">long</span> a<span class="op">,</span> <span class="dt">long</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Continue the loop until b becomes 0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>b <span class="op">!=</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Swap a with b and b with the remainder of a divided by b</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="dt">long</span> temp <span class="op">=</span> b<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> a <span class="op">%</span> b<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// The GCD is stored in a</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -676,13 +775,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dp.html" class="pagination-link" aria-label="Dynamic Programming">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></span>
+      <a href="./moore-voting-algorithm.html" class="pagination-link" aria-label="Boyer-Moore Majority Voting Algorithm">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Boyer-Moore Majority Voting Algorithm</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./two-pointers.html" class="pagination-link" aria-label="Two Pointers">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
