@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./gcd-euclidean-algorithm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Greatest Common Divisor and Least Common Multiple</span></span></a>
   </div>
 </li>
       </ul>
@@ -263,7 +263,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions"><span class="header-section-number">6.1</span> Questions</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link active" data-scroll-target="#questions"><span class="header-section-number">6.1</span> Questions</a>
+  <ul class="collapse">
+  <li><a href="#fully-sorted-array" id="toc-fully-sorted-array" class="nav-link" data-scroll-target="#fully-sorted-array"><span class="header-section-number">6.1.1</span> Fully sorted array</a></li>
+  <li><a href="#nearly-sorted-array" id="toc-nearly-sorted-array" class="nav-link" data-scroll-target="#nearly-sorted-array"><span class="header-section-number">6.1.2</span> Nearly sorted array</a></li>
+  </ul></li>
   <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">6.2</span> Reference</a></li>
   </ul>
 </nav>
@@ -292,28 +296,44 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="questions" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="questions"><span class="header-section-number">6.1</span> Questions</h2>
+<section id="fully-sorted-array" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="fully-sorted-array"><span class="header-section-number">6.1.1</span> Fully sorted array</h3>
 <ol type="1">
 <li><a href="https://leetcode.com/problems/binary-search">704. Binary Search</a></li>
 <li><a href="https://leetcode.com/problems/first-bad-version/description/">278. First Bad Version</a></li>
-<li><a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/">1011. Capacity To Ship Packages Within D Days</a></li>
 <li><a href="https://leetcode.com/problems/minimum-time-to-complete-trips/description/">2187. Minimum Time to Complete Trips</a></li>
 <li><a href="https://leetcode.com/problems/sqrtx/description/">69. Sqrt(x)</a></li>
 <li><a href="https://leetcode.com/problems/search-insert-position/description/">35. Search Insert Position</a></li>
-<li><a href="https://leetcode.com/problems/split-array-largest-sum/description/">410. Split Array Largest Sum</a></li>
 <li><a href="https://leetcode.com/problems/minimum-number-of-days-to-make-m-bouquets/description/">1482. Minimum Number of Days to Make m Bouquets</a></li>
 <li><a href="https://leetcode.com/problems/kth-smallest-number-in-multiplication-table/description/">668. Kth Smallest Number in Multiplication Table</a></li>
 <li><a href="https://leetcode.com/problems/find-k-th-smallest-pair-distance/description/">719. Find K-th Smallest Pair Distance</a></li>
 <li><a href="https://leetcode.com/problems/ugly-number-iii/description/">1201. Ugly Number III</a></li>
-<li><a href="https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/">1283. Find the Smallest Divisor Given a Threshold</a></li>
-<li><a href="https://leetcode.com/problems/koko-eating-bananas/description/">875. Koko Eating Bananas</a></li>
 <li><a href="https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/description/">34. Find First and Last Position of Element in Sorted Array</a></li>
 <li><a href="https://leetcode.com/problems/search-a-2d-matrix/description/">74. Search a 2D Matrix</a></li>
 <li><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/">153. Find Minimum in Rotated Sorted Array</a></li>
-<li><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">33. Search in Rotated Sorted Array</a></li>
 <li><a href="https://leetcode.com/problems/time-based-key-value-store/description/">981. Time Based Key-Value Store</a></li>
 <li><a href="https://leetcode.com/problems/median-of-two-sorted-arrays/description/">4. Median of Two Sorted Arrays</a></li>
 <li><a href="https://leetcode.com/problems/find-target-indices-after-sorting-array/description/">2089. Find Target Indices After Sorting Array</a></li>
 </ol>
+</section>
+<section id="nearly-sorted-array" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="nearly-sorted-array"><span class="header-section-number">6.1.2</span> Nearly sorted array</h3>
+<ol type="1">
+<li><a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/">33. Search in Rotated Sorted Array</a></li>
+<li><a href="https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/">81. Search in Rotated Sorted Array II</a></li>
+<li><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/">153. Find Minimum in Rotated Sorted Array</a></li>
+<li><a href="https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/">154. Find Minimum in Rotated Sorted Array II</a></li>
+<li><a href="https://leetcode.com/problems/find-peak-element/description/">162. Find Peak Element</a></li>
+<li><a href="https://leetcode.com/problems/peak-index-in-a-mountain-array/description/">852. Peak Index in a Mountain Array</a></li>
+</ol>
+<p>Min-max</p>
+<ol type="1">
+<li><a href="https://leetcode.com/problems/split-array-largest-sum/description/">410. Split Array Largest Sum</a></li>
+<li><a href="https://leetcode.com/problems/koko-eating-bananas/description/">875. Koko Eating Bananas</a></li>
+<li><a href="https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/description/">1011. Capacity To Ship Packages Within D Days</a></li>
+<li><a href="https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/description/">1283. Find the Smallest Divisor Given a Threshold</a></li>
+</ol>
+</section>
 </section>
 <section id="reference" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="reference"><span class="header-section-number">6.2</span> Reference</h2>

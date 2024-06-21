@@ -115,67 +115,67 @@
   {
     "objectID": "gcd-euclidean-algorithm.html",
     "href": "gcd-euclidean-algorithm.html",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "",
     "text": "3.1 Leetcode Problems",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
     "objectID": "gcd-euclidean-algorithm.html#leetcode-problems",
     "href": "gcd-euclidean-algorithm.html#leetcode-problems",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "",
     "text": "1979. Find Greatest Common Divisor of Array\n1201. Ugly Number III",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
     "objectID": "gcd-euclidean-algorithm.html#example",
     "href": "gcd-euclidean-algorithm.html#example",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "3.2 Example",
     "text": "3.2 Example\nLet’s take two integers, say 24 and 36:\n\nThe factors of 24 are: 1, 2, 3, 4, 6, 8, 12, 24.\nThe factors of 36 are: 1, 2, 3, 4, 6, 9, 12, 18, 36.\nThe common factors are: 1, 2, 3, 4, 6, 12.\n\nOut of these, the greatest one is 12. So, the GCD of 24 and 36 is 12.",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
     "objectID": "gcd-euclidean-algorithm.html#euclidean-algorithm",
     "href": "gcd-euclidean-algorithm.html#euclidean-algorithm",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "3.3 Euclidean Algorithm",
     "text": "3.3 Euclidean Algorithm\nThe Euclidean algorithm is a well-known method for finding the GCD of two numbers. It is based on the principle that the GCD of two numbers also divides their difference. Here’s how it works:\n\nGiven two numbers a and b, replace a with b and b with the remainder of the division of a by b (a % b).\nRepeat this process until b becomes 0.\nThe GCD is the non-zero number remaining.",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
     "objectID": "gcd-euclidean-algorithm.html#steps-in-the-euclidean-algorithm",
     "href": "gcd-euclidean-algorithm.html#steps-in-the-euclidean-algorithm",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "3.4 Steps in the Euclidean Algorithm",
     "text": "3.4 Steps in the Euclidean Algorithm\nFor example, let’s find the GCD of 48 and 18 using the Euclidean algorithm:\n\nInitial values: a = 48, b = 18.\nCompute 48 % 18, which is 12. Update a to 18 and b to 12.\nCompute 18 % 12, which is 6. Update a to 12 and b to 6.\nCompute 12 % 6, which is 0. Update a to 6 and b to 0.\nNow, b is 0, so the GCD is the current value of a, which is 6.\n\nIn summary, the GCD of two integers is the largest integer that divides both of them without leaving a remainder, and it can be efficiently computed using the Euclidean algorithm.",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
     "objectID": "gcd-euclidean-algorithm.html#implementations",
     "href": "gcd-euclidean-algorithm.html#implementations",
-    "title": "3  Euclidean Algorithm to Find Greatest Common Divisor (GCD)",
+    "title": "3  Greatest Common Divisor and Least Common Multiple",
     "section": "3.5 Implementations",
     "text": "3.5 Implementations\nBelow is an implementation of the algorithm in Java:\n// Function to return the greatest common divisor of a and b\npublic long gcd(long a, long b) {\n    // Continue the loop until b becomes 0\n    while (b != 0) {\n        // Swap a with b and b with the remainder of a divided by b\n        long temp = b;\n        b = a % b;\n        a = temp;\n    }\n    // The GCD is stored in a\n    return a;\n}",
     "crumbs": [
       "Special Algorithms",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Euclidean Algorithm to Find Greatest Common Divisor (GCD)</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Greatest Common Divisor and Least Common Multiple</span>"
     ]
   },
   {
@@ -205,7 +205,7 @@
     "href": "binary-search.html#questions",
     "title": "6  Binary Search",
     "section": "",
-    "text": "704. Binary Search\n278. First Bad Version\n1011. Capacity To Ship Packages Within D Days\n2187. Minimum Time to Complete Trips\n69. Sqrt(x)\n35. Search Insert Position\n410. Split Array Largest Sum\n1482. Minimum Number of Days to Make m Bouquets\n668. Kth Smallest Number in Multiplication Table\n719. Find K-th Smallest Pair Distance\n1201. Ugly Number III\n1283. Find the Smallest Divisor Given a Threshold\n875. Koko Eating Bananas\n34. Find First and Last Position of Element in Sorted Array\n74. Search a 2D Matrix\n153. Find Minimum in Rotated Sorted Array\n33. Search in Rotated Sorted Array\n981. Time Based Key-Value Store\n4. Median of Two Sorted Arrays\n2089. Find Target Indices After Sorting Array",
+    "text": "6.1.1 Fully sorted array\n\n704. Binary Search\n278. First Bad Version\n2187. Minimum Time to Complete Trips\n69. Sqrt(x)\n35. Search Insert Position\n1482. Minimum Number of Days to Make m Bouquets\n668. Kth Smallest Number in Multiplication Table\n719. Find K-th Smallest Pair Distance\n1201. Ugly Number III\n34. Find First and Last Position of Element in Sorted Array\n74. Search a 2D Matrix\n153. Find Minimum in Rotated Sorted Array\n981. Time Based Key-Value Store\n4. Median of Two Sorted Arrays\n2089. Find Target Indices After Sorting Array\n\n\n\n6.1.2 Nearly sorted array\n\n33. Search in Rotated Sorted Array\n81. Search in Rotated Sorted Array II\n153. Find Minimum in Rotated Sorted Array\n154. Find Minimum in Rotated Sorted Array II\n162. Find Peak Element\n852. Peak Index in a Mountain Array\n\nMin-max\n\n410. Split Array Largest Sum\n875. Koko Eating Bananas\n1011. Capacity To Ship Packages Within D Days\n1283. Find the Smallest Divisor Given a Threshold",
     "crumbs": [
       "Binary Search",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Binary Search</span>"
