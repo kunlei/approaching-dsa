@@ -1,4 +1,4 @@
-# Euclidean Algorithm to Find Greatest Common Divisor (GCD)
+# Greatest Common Divisor and Least Common Multiple
 
 The greatest common divisor (GCD) of two integers is the largest positive integer that divides both of the integers without leaving a remainder. In other words, it's the greatest number that is a common factor of both numbers.
 
