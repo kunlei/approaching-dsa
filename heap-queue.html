@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Approaching Data Structure and Algorithms - 4&nbsp; Two Pointers</title>
+<title>Approaching Data Structure and Algorithms - 7&nbsp; Heap / Priority Queue</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sliding-window.html" rel="next">
-<link href="./gcd-euclidean-algorithm.html" rel="prev">
+<link href="./trees.html" rel="next">
+<link href="./binary-search.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two-pointers.html">Two Pointers</a></li><li class="breadcrumb-item"><a href="./two-pointers.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./heap-queue.html">Heap and Queue</a></li><li class="breadcrumb-item"><a href="./heap-queue.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Heap / Priority Queue</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./two-pointers.html" class="sidebar-item-text sidebar-link active">
+  <a href="./two-pointers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></span></a>
   </div>
 </li>
@@ -218,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heap-queue.html" class="sidebar-item-text sidebar-link">
+  <a href="./heap-queue.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Heap / Priority Queue</span></span></a>
   </div>
 </li>
@@ -293,14 +293,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#practice-problems" id="toc-practice-problems" class="nav-link active" data-scroll-target="#practice-problems"><span class="header-section-number">7.1</span> Practice Problems</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./two-pointers.html">Two Pointers</a></li><li class="breadcrumb-item"><a href="./two-pointers.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./heap-queue.html">Heap and Queue</a></li><li class="breadcrumb-item"><a href="./heap-queue.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Heap / Priority Queue</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Heap / Priority Queue</span></h1>
 </div>
 
 
@@ -317,29 +323,33 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="practice-problems" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="practice-problems"><span class="header-section-number">7.1</span> Practice Problems</h2>
 <ol type="1">
-<li><a href="https://leetcode.com/problems/remove-element/">27. Remove Element</a></li>
-<li><a href="https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/">26. Remove Duplicates from Sorted Array</a></li>
-<li><a href="https://leetcode.com/problems/two-sum/">1. Two Sum</a></li>
-<li><a href="https://leetcode.com/problems/3sum/">15. 3Sum</a></li>
-<li><a href="https://leetcode.com/problems/4sum/">18. 4Sum</a></li>
-<li><a href="https://leetcode.com/problems/move-zeroes/">283. Move Zeroes</a></li>
-<li><a href="https://leetcode.com/problems/backspace-string-compare/">844. Backspace String Compare</a></li>
-<li><a href="https://leetcode.com/problems/squares-of-a-sorted-array/">977. Squares of a Sorted Array</a></li>
-<li><a href="https://leetcode.com/problems/reverse-string/">344. Reverse String</a></li>
-<li><a href="https://leetcode.com/problems/reverse-words-in-a-string/">151. Reverse Words in a String</a></li>
-<li><a href="https://leetcode.com/problems/reverse-linked-list/">206. Reverse Linked List</a></li>
-<li><a href="https://leetcode.com/problems/remove-nth-node-from-end-of-list/">19. Remove Nth Node From End of List</a></li>
-<li><a href="https://leetcode.com/problems/intersection-of-two-linked-lists/">160. Intersection of Two Linked Lists</a></li>
-<li><a href="https://leetcode.com/problems/linked-list-cycle-ii/">142. Linked List Cycle II</a></li>
-<li><a href="https://leetcode.com/problems/add-two-numbers/">2. Add Two Numbers</a></li>
-<li><a href="https://leetcode.com/problems/contains-duplicate/description/">217. Contains Duplicate</a></li>
-<li><a href="https://leetcode.com/problems/maximum-subarray/description/">53. Maximum Subarray</a></li>
-<li><a href="https://leetcode.com/problems/palindrome-number/description/">9. Palindrome Number</a></li>
-<li><a href="https://leetcode.com/problems/roman-to-integer/description/">13. Roman to Integer</a></li>
+<li><a href="https://leetcode.com/problems/kth-largest-element-in-a-stream/description/">703. Kth Largest Element in a Stream</a></li>
+<li><a href="https://leetcode.com/problems/last-stone-weight/description/">1046. Last Stone Weight</a></li>
+<li><a href="https://leetcode.com/problems/k-closest-points-to-origin/description/">973. K Closest Points to Origin</a></li>
+<li><a href="https://leetcode.com/problems/kth-largest-element-in-an-array/description/">215. Kth Largest Element in an Array</a></li>
+<li><a href="https://leetcode.com/problems/task-scheduler/description/">621. Task Scheduler</a></li>
+<li><a href="https://leetcode.com/problems/design-twitter/description/">355. Design Twitter</a></li>
+<li><a href="https://leetcode.com/problems/least-number-of-unique-integers-after-k-removals/description/">1481. Least Number of Unique Integers after K Removals</a></li>
+<li><a href="https://leetcode.com/problems/furthest-building-you-can-reach/description/">1642. Furthest Building You Can Reach</a></li>
+<li><a href="https://leetcode.com/problems/minimize-deviation-in-array/description/">1675. Minimize Deviation in Array</a></li>
+<li><a href="https://leetcode.com/problems/find-median-from-data-stream/description/">295. Find Median from Data Stream</a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
+<li><a href=""></a></li>
 </ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -731,13 +741,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./gcd-euclidean-algorithm.html" class="pagination-link" aria-label="Greatest Common Divisor and Least Common Multiple">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Greatest Common Divisor and Least Common Multiple</span></span>
+      <a href="./binary-search.html" class="pagination-link" aria-label="Binary Search">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Binary Search</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sliding-window.html" class="pagination-link" aria-label="Sliding Window">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sliding Window</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./trees.html" class="pagination-link" aria-label="Trees">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Trees</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

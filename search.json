@@ -221,5 +221,49 @@
       "Binary Search",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Binary Search</span>"
     ]
+  },
+  {
+    "objectID": "heap-queue.html",
+    "href": "heap-queue.html",
+    "title": "7  Heap / Priority Queue",
+    "section": "",
+    "text": "7.1 Practice Problems",
+    "crumbs": [
+      "Heap and Queue",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Heap / Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "heap-queue.html#practice-problems",
+    "href": "heap-queue.html#practice-problems",
+    "title": "7  Heap / Priority Queue",
+    "section": "",
+    "text": "703. Kth Largest Element in a Stream\n1046. Last Stone Weight\n973. K Closest Points to Origin\n215. Kth Largest Element in an Array\n621. Task Scheduler\n355. Design Twitter\n1481. Least Number of Unique Integers after K Removals\n1642. Furthest Building You Can Reach\n1675. Minimize Deviation in Array\n295. Find Median from Data Stream",
+    "crumbs": [
+      "Heap and Queue",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Heap / Priority Queue</span>"
+    ]
+  },
+  {
+    "objectID": "graph.html",
+    "href": "graph.html",
+    "title": "10  Graphs",
+    "section": "",
+    "text": "10.1 Practice Problems",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "graph.html#practice-problems",
+    "href": "graph.html#practice-problems",
+    "title": "10  Graphs",
+    "section": "",
+    "text": "200. Number of Islands\n695. Max Area of Island\n133. Clone Graph\n994. Rotting Oranges\n127. Word Ladder\n684. Redundant Connection\n210. Course Schedule II\n207. Course Schedule\n130. Surrounded Regions\n417. Pacific Atlantic Water Flow",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Graphs</span>"
+    ]
   }
 ]
