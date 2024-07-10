@@ -265,5 +265,27 @@
       "Graphs",
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Graphs</span>"
     ]
+  },
+  {
+    "objectID": "topological-sort.html",
+    "href": "topological-sort.html",
+    "title": "11  Topological Sort",
+    "section": "",
+    "text": "11.1 The Algorithm",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "topological-sort.html#practise-problems",
+    "href": "topological-sort.html#practise-problems",
+    "title": "11  Topological Sort",
+    "section": "11.2 Practise Problems",
+    "text": "11.2 Practise Problems\n\n207. Course Schedule\n210. Course Schedule II\n1462. Course Schedule IV\n802. Find Eventual Safe States\n851. Loud and Rich\n913. Cat and Mouse\n2192. All Ancestors of a Node in a Directed Acyclic Graph",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
   }
 ]
