@@ -287,5 +287,38 @@
       "Graphs",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Topological Sort</span>"
     ]
+  },
+  {
+    "objectID": "minimum-spanning-tree.html",
+    "href": "minimum-spanning-tree.html",
+    "title": "12  Minimum Spanning Tree",
+    "section": "",
+    "text": "12.1 Prim’s Algorithm",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
+  },
+  {
+    "objectID": "minimum-spanning-tree.html#kruskal",
+    "href": "minimum-spanning-tree.html#kruskal",
+    "title": "12  Minimum Spanning Tree",
+    "section": "12.2 Kruskal",
+    "text": "12.2 Kruskal",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
+  },
+  {
+    "objectID": "minimum-spanning-tree.html#practise-problems",
+    "href": "minimum-spanning-tree.html#practise-problems",
+    "title": "12  Minimum Spanning Tree",
+    "section": "12.3 Practise Problems",
+    "text": "12.3 Practise Problems\n\n743. Network Delay Time\n685. Redundant Connection II\n787. Cheapest Flights Within K Stops",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
   }
 ]
