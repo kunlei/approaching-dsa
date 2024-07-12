@@ -267,58 +267,124 @@
     ]
   },
   {
-    "objectID": "topological-sort.html",
-    "href": "topological-sort.html",
-    "title": "11  Topological Sort",
+    "objectID": "graph-union-find.html",
+    "href": "graph-union-find.html",
+    "title": "11  Union Find",
     "section": "",
-    "text": "11.1 The Algorithm",
+    "text": "11.1 Implementations",
     "crumbs": [
       "Graphs",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Topological Sort</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Union Find</span>"
     ]
   },
   {
-    "objectID": "topological-sort.html#practise-problems",
-    "href": "topological-sort.html#practise-problems",
-    "title": "11  Topological Sort",
+    "objectID": "graph-union-find.html#implementations",
+    "href": "graph-union-find.html#implementations",
+    "title": "11  Union Find",
+    "section": "",
+    "text": "11.1.1 Java\n\npublic class Node&lt;T&gt; {\n    /**\n     * value of the node\n     */\n    public T value;\n    /**\n     * parent of the current node.\n     */\n    public Node&lt;T&gt; parent;\n    /**\n     * rank of the Node\n     */\n    pubilc int rank;\n\n    public Node(T value) {\n        this.value = value;\n        this.parent = this; // key: a node is its won parent in the beginning\n    }\n}\n\npublic class UnionFind&lt;T&gt; {\n    public Node&lt;T&gt; makeSet(T v) {\n        return new Node&lt;T&gt;(v);\n    }\n\n    public Node&lt;T&gt; find(Node&lt;T&gt; node) {\n        while (node != node.parent) {\n            node = node.parent;\n        }\n        return node;\n    }\n\n    public void union(Node&lt;T&gt; x, Node&lt;T&gt; y) {\n        Node&lt;T&gt; nx = find(x);\n        Node&lt;T&gt; ny = find(y);\n\n        if (nx == ny) return;\n\n        if (nx.rank &gt; ny.rank) {\n            ny.parent = nx;\n        } else if (nx.rank &lt; ny.rank) {\n            nx.parent = ny;\n        } else {\n            ny.parent = nx;\n            nx.rank++;\n        }\n    }\n}\n\n\n11.1.2 Python",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Union Find</span>"
+    ]
+  },
+  {
+    "objectID": "graph-union-find.html#practise-problems",
+    "href": "graph-union-find.html#practise-problems",
+    "title": "11  Union Find",
     "section": "11.2 Practise Problems",
-    "text": "11.2 Practise Problems\n\n207. Course Schedule\n210. Course Schedule II\n1462. Course Schedule IV\n802. Find Eventual Safe States\n851. Loud and Rich\n913. Cat and Mouse\n2192. All Ancestors of a Node in a Directed Acyclic Graph",
+    "text": "11.2 Practise Problems\n\n128. Longest Consecutive Sequence\n130. Surrounded Regions\n200. Number of Islands\n352. Data Stream as Disjoint Intervals\n399. Evaluate Division\n547. Number of Provinces\n684. Redundant Connection\n685. Redundant Connection II\n695. Max Area of Island\n721. Accounts Merge\n749. Contain Virus\n765. Couples Holding Hands\n778. Swim in Rising Water\n785. Is Graph Bipartite?\n839. Similar String Groups\n886. Possible Bipartition\n924. Minimize Malware Spread\n928. Minimize Malware Spread II\n959. Regions Cut By Slashes\n990. Satisfiability of Equality Equations\n1061. Lexicographically Smallest Equivalent String\n1202. Smallest String With Swaps\n1319. Number of Operations to Make Network Connected\n1434. Number of Ways to Wear Different Hats to Each Other\n1579. Remove Max Number of Edges to Keep Graph Fully Traversable\n1627. Graph Connectivity With Threshold\n1632. Rank Transform of a Matrix\n1697. Checking Existence of Edge Length Limited Paths",
     "crumbs": [
       "Graphs",
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Topological Sort</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Union Find</span>"
     ]
   },
   {
-    "objectID": "minimum-spanning-tree.html",
-    "href": "minimum-spanning-tree.html",
+    "objectID": "graph-union-find.html#references",
+    "href": "graph-union-find.html#references",
+    "title": "11  Union Find",
+    "section": "11.3 References",
+    "text": "11.3 References\n\nLeetcode guide",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Union Find</span>"
+    ]
+  },
+  {
+    "objectID": "graph-mst.html",
+    "href": "graph-mst.html",
     "title": "12  Minimum Spanning Tree",
     "section": "",
-    "text": "12.1 Prim’s Algorithm",
+    "text": "12.1 Prim’s Algorithm\nPrim’s algorithm is a classic algorithm used in computer science to find a minimum spanning tree (MST) for a weighted undirected graph. A minimum spanning tree is a subset of the edges of the graph that connects all the vertices together, without any cycles, and with the minimum possible total edge weight. Here’s a step-by-step explanation of how Prim’s algorithm works:",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
     ]
   },
   {
-    "objectID": "minimum-spanning-tree.html#kruskal",
-    "href": "minimum-spanning-tree.html#kruskal",
+    "objectID": "graph-mst.html#prims-algorithm",
+    "href": "graph-mst.html#prims-algorithm",
+    "title": "12  Minimum Spanning Tree",
+    "section": "",
+    "text": "12.1.1 Steps of Prim’s Algorithm\n\nInitialization:\n\nStart with a graph ( G = (V, E) ), where ( V ) is the set of vertices and ( E ) is the set of edges.\nChoose an arbitrary vertex ( u ) from ( V ) to start the MST. Initialize a set ( T ) to keep track of vertices included in the MST, starting with ( { u } ).\n\nPriority Queue:\n\nUse a priority queue (or a min-heap) to keep track of the edges with the smallest weight. Initially, insert all edges that are connected to the starting vertex ( u ) into the priority queue.\n\nMain Loop:\n\nWhile the set ( T ) does not contain all the vertices in ( V ):\n\nExtract the edge with the minimum weight from the priority queue.\nLet this edge be ( (u, v) ), where ( u ) is in ( T ) and ( v ) is not.\nAdd vertex ( v ) to the set ( T ).\nAdd the edge ( (u, v) ) to the MST.\nInsert all edges connected to vertex ( v ) into the priority queue, where the other vertex of the edge is not yet in ( T ).\n\n\nTermination:\n\nThe algorithm terminates when all vertices are included in the set ( T ).\n\n\nThe result is a minimum spanning tree of the graph.\nimport java.util.*;\n\nclass Prim {\n    // Edge class to store information about graph edges\n    static class Edge implements Comparable&lt;Edge&gt; {\n        int vertex;\n        int weight;\n\n        Edge(int vertex, int weight) {\n            this.vertex = vertex;\n            this.weight = weight;\n        }\n\n        public int compareTo(Edge other) {\n            return this.weight - other.weight;\n        }\n    }\n\n    // Function to run Prim's algorithm and find the MST\n    public static void primMST(List&lt;List&lt;Edge&gt;&gt; graph) {\n        int V = graph.size();\n        boolean[] inMST = new boolean[V];\n        PriorityQueue&lt;Edge&gt; pq = new PriorityQueue&lt;&gt;();\n        int[] key = new int[V];\n        int[] parent = new int[V];\n\n        // Initialize keys and parent arrays\n        Arrays.fill(key, Integer.MAX_VALUE);\n        Arrays.fill(parent, -1);\n\n        // Start with vertex 0\n        key[0] = 0;\n        pq.add(new Edge(0, 0));\n\n        while (!pq.isEmpty()) {\n            int u = pq.poll().vertex;\n            inMST[u] = true;\n\n            // Loop through all adjacent vertices of u\n            for (Edge edge : graph.get(u)) {\n                int v = edge.vertex;\n                int weight = edge.weight;\n\n                // If v is not in MST and weight of (u, v) is smaller than the current key of v\n                if (!inMST[v] && weight &lt; key[v]) {\n                    key[v] = weight;\n                    pq.add(new Edge(v, key[v]));\n                    parent[v] = u;\n                }\n            }\n        }\n\n        // Print the edges in the MST\n        for (int i = 1; i &lt; V; i++) {\n            System.out.println(parent[i] + \" - \" + i);\n        }\n    }\n\n    public static void main(String[] args) {\n        int V = 4;\n        List&lt;List&lt;Edge&gt;&gt; graph = new ArrayList&lt;&gt;();\n        for (int i = 0; i &lt; V; i++) {\n            graph.add(new ArrayList&lt;&gt;());\n        }\n\n        // Add edges to the graph\n        graph.get(0).add(new Edge(1, 2));\n        graph.get(0).add(new Edge(2, 3));\n        graph.get(0).add(new Edge(3, 1));\n        graph.get(1).add(new Edge(0, 2));\n        graph.get(1).add(new Edge(3, 4));\n        graph.get(2).add(new Edge(0, 3));\n        graph.get(2).add(new Edge(3, 5));\n        graph.get(3).add(new Edge(0, 1));\n        graph.get(3).add(new Edge(1, 4));\n        graph.get(3).add(new Edge(2, 5));\n\n        // Run Prim's algorithm\n        primMST(graph);\n    }\n}\n\n1584. Min Cost to Connect All Points",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
+  },
+  {
+    "objectID": "graph-mst.html#kruskal",
+    "href": "graph-mst.html#kruskal",
     "title": "12  Minimum Spanning Tree",
     "section": "12.2 Kruskal",
-    "text": "12.2 Kruskal",
+    "text": "12.2 Kruskal\n\n1584. Min Cost to Connect All Points",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
     ]
   },
   {
-    "objectID": "minimum-spanning-tree.html#practise-problems",
-    "href": "minimum-spanning-tree.html#practise-problems",
+    "objectID": "graph-mst.html#practise-problems",
+    "href": "graph-mst.html#practise-problems",
     "title": "12  Minimum Spanning Tree",
     "section": "12.3 Practise Problems",
     "text": "12.3 Practise Problems\n\n743. Network Delay Time\n685. Redundant Connection II\n787. Cheapest Flights Within K Stops",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
+  },
+  {
+    "objectID": "graph-mst.html#references",
+    "href": "graph-mst.html#references",
+    "title": "12  Minimum Spanning Tree",
+    "section": "12.4 References",
+    "text": "12.4 References\n\nLeetcode guide",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Minimum Spanning Tree</span>"
+    ]
+  },
+  {
+    "objectID": "graph-topological-sort.html",
+    "href": "graph-topological-sort.html",
+    "title": "13  Topological Sort",
+    "section": "",
+    "text": "13.1 The Algorithm",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "graph-topological-sort.html#practise-problems",
+    "href": "graph-topological-sort.html#practise-problems",
+    "title": "13  Topological Sort",
+    "section": "13.2 Practise Problems",
+    "text": "13.2 Practise Problems\n\n207. Course Schedule\n210. Course Schedule II\n1462. Course Schedule IV\n802. Find Eventual Safe States\n851. Loud and Rich\n913. Cat and Mouse\n2192. All Ancestors of a Node in a Directed Acyclic Graph",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
     ]
   }
 ]
