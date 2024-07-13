@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Approaching Data Structure and Algorithms",
+    "title": "Hello, DSA!",
     "section": "",
     "text": "Preface\nSolving optimization problems is my passion, but in my work, building mathematical models typically doesn’t take much time. Instead, I spend most of my time implementing and fine-tuning various algorithms to solve real-world problems. I take great pleasure in transforming optimization models into software products, which requires proficient coding skills.\nJava used to be my favorite programming language, but now Python is my second favorite, especially as I delve deeper into machine learning projects in recent years. I created this personal notebook to document my journey in improving my skills in data structures and algorithms, as well as to continue honing my Java and Python expertise.",
     "crumbs": [
@@ -407,6 +407,72 @@
     "crumbs": [
       "Solutions",
       "130. Surrounded Regions"
+    ]
+  },
+  {
+    "objectID": "200. Number of Islands.html",
+    "href": "200. Number of Islands.html",
+    "title": "200. Number of Islands",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 200. Number of Islands.\nThis is a classical graph connectivity problem. Lands are connected if they are adjacent either horizontally or vertically. Once we identify the sets of connected lands, we will know the number of islands.",
+    "crumbs": [
+      "Solutions",
+      "200. Number of Islands"
+    ]
+  },
+  {
+    "objectID": "200. Number of Islands.html#union-find",
+    "href": "200. Number of Islands.html#union-find",
+    "title": "200. Number of Islands",
+    "section": "Union Find",
+    "text": "Union Find\nThis is an esier problem than 130. Surrounded Regions in that we just need to identify the connected lands and not worry about how to differentiate them.\n\nJava\nclass Solution {\n    public int numIslands(char[][] grid) {\n        // create the nodes for union find\n        int m = grid.length, n = grid[0].length;\n        Node[][] nodes = new Node[m][n];\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                nodes[i][j] = new Node();\n            }\n        }\n\n        // connect nodes\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (grid[i][j] == '0') continue;\n\n                if (j &lt; n - 1 && grid[i][j + 1] == '1') {\n                    uf.union(nodes[i][j], nodes[i][j + 1]);\n                }\n\n                if (i &lt; m - 1 && grid[i + 1][j] == '1') {\n                    uf.union(nodes[i][j], nodes[i + 1][j]);\n                }\n            }\n        }\n\n        // count distinct root nodes as the number of islands\n        Set&lt;Node&gt; set = new HashSet&lt;&gt;();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (grid[i][j] == '1') {\n                    set.add(uf.find(nodes[i][j]));\n                }\n            }\n        }\n        return set.size();\n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else {\n                rx.parent = ry;\n                ry.rank++;\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
+    "crumbs": [
+      "Solutions",
+      "200. Number of Islands"
+    ]
+  },
+  {
+    "objectID": "200. Number of Islands.html#breadth-first-search",
+    "href": "200. Number of Islands.html#breadth-first-search",
+    "title": "200. Number of Islands",
+    "section": "Breadth First Search",
+    "text": "Breadth First Search",
+    "crumbs": [
+      "Solutions",
+      "200. Number of Islands"
+    ]
+  },
+  {
+    "objectID": "200. Number of Islands.html#depth-first-search",
+    "href": "200. Number of Islands.html#depth-first-search",
+    "title": "200. Number of Islands",
+    "section": "Depth First Search",
+    "text": "Depth First Search",
+    "crumbs": [
+      "Solutions",
+      "200. Number of Islands"
+    ]
+  },
+  {
+    "objectID": "352. Data Stream as Disjoint Intervals.html",
+    "href": "352. Data Stream as Disjoint Intervals.html",
+    "title": "352. Data Stream as Disjoint Intervals",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 352. Data Stream as Disjoint Intervals.",
+    "crumbs": [
+      "Solutions",
+      "352. Data Stream as Disjoint Intervals"
+    ]
+  },
+  {
+    "objectID": "352. Data Stream as Disjoint Intervals.html#union-find",
+    "href": "352. Data Stream as Disjoint Intervals.html#union-find",
+    "title": "352. Data Stream as Disjoint Intervals",
+    "section": "Union Find",
+    "text": "Union Find\n\nJava\nclass SummaryRanges {\n    private Map&lt;Integer, Node&gt; map;\n    private UnionFind uf;\n    public SummaryRanges() {\n        this.map = new HashMap&lt;&gt;();   \n        this.uf = new UnionFind();\n    }\n    \n    public void addNum(int value) {\n        if (map.containsKey(value)) return;\n\n        Node node = new Node(value);\n        map.put(value, node);\n        if (map.containsKey(value - 1)) {\n            uf.union(node, map.get(value - 1));\n        }\n\n        if (map.containsKey(value + 1)) {\n            uf.union(node, map.get(value + 1));\n        }\n    }\n    \n    public int[][] getIntervals() {\n        Set&lt;Node&gt; nodes = new HashSet&lt;&gt;();\n        for (Node node : map.values()) {\n            Node root = uf.find(node);\n            nodes.add(root);\n        }\n\n        List&lt;Node&gt; sortedNodes = new ArrayList&lt;&gt;(nodes);\n        sortedNodes.sort((a, b) -&gt; Integer.compare(a.min, b.min));\n        int[][] res = new int[sortedNodes.size()][2];\n        for (int i = 0; i &lt; sortedNodes.size(); i++) {\n            res[i][0] = sortedNodes.get(i).min;\n            res[i][1] = sortedNodes.get(i).max;\n        }\n        return res;\n        \n    }\n\n    public class Node {\n        public int value;\n        public Node parent;\n        public int rank;\n        public int min;\n        public int max;\n\n        public Node(int value) {\n            this.value = value;\n            this.parent = this;\n            this.rank = 0;\n            this.min = value;\n            this.max = value;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n                rx.min = Math.min(rx.min, ry.min);\n                rx.max = Math.max(rx.max, ry.max);\n            } else if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n                ry.min = Math.min(ry.min, rx.min);\n                ry.max = Math.max(ry.max, rx.max);\n            } else {\n                ry.parent = rx;\n                rx.rank++;\n                rx.min = Math.min(rx.min, ry.min);\n                rx.max = Math.max(rx.max, ry.max);\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
+    "crumbs": [
+      "Solutions",
+      "352. Data Stream as Disjoint Intervals"
     ]
   }
 ]
