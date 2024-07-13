@@ -282,7 +282,7 @@
     "href": "graph-union-find.html#implementations",
     "title": "11  Union Find",
     "section": "",
-    "text": "11.1.1 Java\n\npublic class Node&lt;T&gt; {\n    /**\n     * value of the node\n     */\n    public T value;\n    /**\n     * parent of the current node.\n     */\n    public Node&lt;T&gt; parent;\n    /**\n     * rank of the Node\n     */\n    pubilc int rank;\n\n    public Node(T value) {\n        this.value = value;\n        this.parent = this; // key: a node is its won parent in the beginning\n    }\n}\n\npublic class UnionFind&lt;T&gt; {\n    public Node&lt;T&gt; makeSet(T v) {\n        return new Node&lt;T&gt;(v);\n    }\n\n    public Node&lt;T&gt; find(Node&lt;T&gt; node) {\n        while (node != node.parent) {\n            node = node.parent;\n        }\n        return node;\n    }\n\n    public void union(Node&lt;T&gt; x, Node&lt;T&gt; y) {\n        Node&lt;T&gt; nx = find(x);\n        Node&lt;T&gt; ny = find(y);\n\n        if (nx == ny) return;\n\n        if (nx.rank &gt; ny.rank) {\n            ny.parent = nx;\n        } else if (nx.rank &lt; ny.rank) {\n            nx.parent = ny;\n        } else {\n            ny.parent = nx;\n            nx.rank++;\n        }\n    }\n}\n\n\n11.1.2 Python",
+    "text": "11.1.1 Java\n\npublic class Node&lt;T&gt; {\n    /**\n     * value of the node\n     */\n    public T value;\n    /**\n     * parent of the current node.\n     */\n    public Node&lt;T&gt; parent;\n    /**\n     * rank of the Node\n     */\n    pubilc int rank;\n\n    public Node(T value) {\n        this.value = value;\n        this.parent = this; // key: a node is its won parent in the beginning\n    }\n}\n\npublic class UnionFind&lt;T&gt; {\n    public Node&lt;T&gt; makeNode(T v) {\n        return new Node&lt;T&gt;(v);\n    }\n\n    public Node&lt;T&gt; find(Node&lt;T&gt; node) {\n        while (node != node.parent) {\n            node = node.parent;\n        }\n        return node;\n    }\n\n    public void union(Node&lt;T&gt; x, Node&lt;T&gt; y) {\n        Node&lt;T&gt; nx = find(x);\n        Node&lt;T&gt; ny = find(y);\n\n        if (nx == ny) return;\n\n        if (nx.rank &gt; ny.rank) {\n            ny.parent = nx;\n        } else if (nx.rank &lt; ny.rank) {\n            nx.parent = ny;\n        } else {\n            ny.parent = nx;\n            nx.rank++;\n        }\n    }\n}\n\n\n11.1.2 Python",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>Union Find</span>"
@@ -385,6 +385,28 @@
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "130. Surrounded Regions.html",
+    "href": "130. Surrounded Regions.html",
+    "title": "130. Surrounded Regions",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 130. Surrounded Regions.\nThere are two types of cells in the board: X cells and O cells. O cells can be connected to each other if they are adjacent horizontally or vertically. Some connected O cells are surrounded by X cells if none of them are located on the borders of the board. The key is to identify all the surrounded O cells and mark them as X.",
+    "crumbs": [
+      "Solutions",
+      "130. Surrounded Regions"
+    ]
+  },
+  {
+    "objectID": "130. Surrounded Regions.html#union-find",
+    "href": "130. Surrounded Regions.html#union-find",
+    "title": "130. Surrounded Regions",
+    "section": "Union Find",
+    "text": "Union Find\nUnion find is a good approach for this problem as we are essentially trying to identify connected cells in the board, and union find is a good data structure and algorithm to achieve this.\nA couple of notes when applying union find to solve this problem:\n\nIt’s straightforward to identify connected cells with union find, but the end goal of this problem is to identify those cells that should not be marked as ‘X’. To this end, we could use a dummy node and connect it with all the ‘O’ cells that sit on the board borders.\nSince we are traversing the board from left to right, and top to bottom approach, we only need to check the cell to the right of the current cell and the cell right below of the current cell.\n\nIn the implemention of union find, I am separating the union find data structure from the algorithms operating on it. Specifically, the Node class records two key information: 1) parent references parent of a node and 2) rank is used for path compression. The UnionFind class operates on the nodes defined for all the cells and the dummy node.\n\nJava\nclass Solution {\n\n    public void solve(char[][] board) {\n        // create nodes corresponding to the cells in the board\n        int m = board.length, n = board[0].length;\n        Node[][] nodes = new Node[m][n];\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                nodes[i][j] = new Node();\n            }\n        }\n\n        // connect nodes using adjacency rules\n        Node dummy = new Node(); // to denote nodes not surrounded\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (board[i][j] == 'X') continue;\n\n                if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {\n                    uf.union(dummy, nodes[i][j]);\n                }\n\n                if (j &lt; n - 1 && board[i][j + 1] == 'O') {\n                    uf.union(nodes[i][j], nodes[i][j + 1]);\n                }\n\n                if (i &lt; m - 1 && board[i + 1][j] == 'O') {\n                    uf.union(nodes[i][j], nodes[i + 1][j]);\n                }\n            }\n        }\n\n        // mark cells that are not surrounded by 'X' cells\n        Node dummyParent = uf.find(dummy);\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (board[i][j] == 'O' && uf.find(nodes[i][j]) != dummyParent) {\n                    board[i][j] = 'X';\n                }\n            }\n        }\n        \n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else {\n                rx.parent = ry;\n                ry.rank++;\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
+    "crumbs": [
+      "Solutions",
+      "130. Surrounded Regions"
     ]
   }
 ]
