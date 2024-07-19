@@ -474,5 +474,27 @@
       "Solutions",
       "352. Data Stream as Disjoint Intervals"
     ]
+  },
+  {
+    "objectID": "399. Evaluate Division.html",
+    "href": "399. Evaluate Division.html",
+    "title": "399. Evaluate Division",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here 399. Evaluate Division.",
+    "crumbs": [
+      "Solutions",
+      "399. Evaluate Division"
+    ]
+  },
+  {
+    "objectID": "399. Evaluate Division.html#union-find",
+    "href": "399. Evaluate Division.html#union-find",
+    "title": "399. Evaluate Division",
+    "section": "Union Find",
+    "text": "Union Find\nThis is a very interesting union find application.\nTo apply union find, we first define the Node class to represent a variable. One key element in the class is the weight attribute which denotes the weight from the current node to its parent node. For example, with the equation a / b = 2.0, we could define node a and b correspondingly, and set a.parent = b and a.weight = 2.0.\nThe UnionFind class defines the two key operations: union(Node x, Node y, double value) and find(Node node).\n\nunion(): this function connects two nodes together.\nfind(): this function not only looks up the root node of the given node, but also compresses the path along the path.\n\nWithin the union() function, it might not be obvious why we have rx.weight = value * y.weight / x.weight. To derive this, consider the following scenario:\n\na / b = 2.0\nc / d = 2.0\n\nNow we have a.parent = b and a.weight = 2.0. In addition, we have c.parent = d and c.weight = 2.0.\nSuppose we have another euqation a / c = 3.0 and we need to call union(c, d, 3.0). Realize that:\n\na = a.weight * b\nc = c.weight * d\n\nNow we have \\(\\frac{c}{d} = \\frac{a.weight \\times b}{c.weight \\times d} = 3.0\\). Then we can have b / d = 3.0 * c.weight / a.weight, which is the formula used in the union() function.\nNote that we are seprating the union find data structure from the algorithm operating on it. Specifically, we use a map to hold all the nodes that represent all the variables given in the equations. The UnionFind class defines the operations on the map.\nclass Solution {\n    public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) {\n        Map&lt;String, Node&gt; map = new HashMap&lt;&gt;();\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; equations.size(); i++) {\n            List&lt;String&gt; lst = equations.get(i);\n            String a = lst.get(0);\n            String b = lst.get(1);\n            double value = values[i];\n\n            if (!map.containsKey(a)) {\n                map.put(a, new Node());\n            }\n            if (!map.containsKey(b)) {\n                map.put(b, new Node());\n            }\n\n            uf.union(map.get(a), map.get(b), value);\n        }\n\n        double[] res = new double[queries.size()];\n        for (int i = 0; i &lt; queries.size(); i++) {\n            List&lt;String&gt; lst = queries.get(i);\n            String a = lst.get(0), b = lst.get(1);\n            if (map.containsKey(a) && map.containsKey(b) && uf.find(map.get(a)) == uf.find(map.get(b))) {\n                res[i] = map.get(a).weight / map.get(b).weight;\n            } else {\n                res[i] = -1;\n            }\n        }\n        return res;\n    }\n\n    public class Node {\n        public Node parent;\n        public double weight;\n\n        public Node() {\n            this.parent = this;\n            this.weight = 1.0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y, double value) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            rx.parent = ry;\n            rx.weight = value * y.weight / x.weight;\n        }\n\n        public Node find(Node node) {\n            Node temp = node;\n            double weight = 1.0;\n            while (temp != temp.parent) {\n                weight *= temp.weight;\n                temp = temp.parent;\n            }\n            node.parent = temp;\n            node.weight = weight;\n            return node.parent;\n        }\n    }\n}",
+    "crumbs": [
+      "Solutions",
+      "399. Evaluate Division"
+    ]
   }
 ]
