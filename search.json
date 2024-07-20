@@ -388,113 +388,157 @@
     ]
   },
   {
-    "objectID": "130. Surrounded Regions.html",
-    "href": "130. Surrounded Regions.html",
+    "objectID": "problems/130. Surrounded Regions.html",
+    "href": "problems/130. Surrounded Regions.html",
     "title": "130. Surrounded Regions",
     "section": "",
     "text": "Problem\nThe original problem is defined here: 130. Surrounded Regions.\nThere are two types of cells in the board: X cells and O cells. O cells can be connected to each other if they are adjacent horizontally or vertically. Some connected O cells are surrounded by X cells if none of them are located on the borders of the board. The key is to identify all the surrounded O cells and mark them as X.",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "130. Surrounded Regions"
     ]
   },
   {
-    "objectID": "130. Surrounded Regions.html#union-find",
-    "href": "130. Surrounded Regions.html#union-find",
+    "objectID": "problems/130. Surrounded Regions.html#union-find",
+    "href": "problems/130. Surrounded Regions.html#union-find",
     "title": "130. Surrounded Regions",
     "section": "Union Find",
     "text": "Union Find\nUnion find is a good approach for this problem as we are essentially trying to identify connected cells in the board, and union find is a good data structure and algorithm to achieve this.\nA couple of notes when applying union find to solve this problem:\n\nIt’s straightforward to identify connected cells with union find, but the end goal of this problem is to identify those cells that should not be marked as ‘X’. To this end, we could use a dummy node and connect it with all the ‘O’ cells that sit on the board borders.\nSince we are traversing the board from left to right, and top to bottom approach, we only need to check the cell to the right of the current cell and the cell right below of the current cell.\n\nIn the implemention of union find, I am separating the union find data structure from the algorithms operating on it. Specifically, the Node class records two key information: 1) parent references parent of a node and 2) rank is used for path compression. The UnionFind class operates on the nodes defined for all the cells and the dummy node.\n\nJava\nclass Solution {\n\n    public void solve(char[][] board) {\n        // create nodes corresponding to the cells in the board\n        int m = board.length, n = board[0].length;\n        Node[][] nodes = new Node[m][n];\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                nodes[i][j] = new Node();\n            }\n        }\n\n        // connect nodes using adjacency rules\n        Node dummy = new Node(); // to denote nodes not surrounded\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (board[i][j] == 'X') continue;\n\n                if (i == 0 || i == m - 1 || j == 0 || j == n - 1) {\n                    uf.union(dummy, nodes[i][j]);\n                }\n\n                if (j &lt; n - 1 && board[i][j + 1] == 'O') {\n                    uf.union(nodes[i][j], nodes[i][j + 1]);\n                }\n\n                if (i &lt; m - 1 && board[i + 1][j] == 'O') {\n                    uf.union(nodes[i][j], nodes[i + 1][j]);\n                }\n            }\n        }\n\n        // mark cells that are not surrounded by 'X' cells\n        Node dummyParent = uf.find(dummy);\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (board[i][j] == 'O' && uf.find(nodes[i][j]) != dummyParent) {\n                    board[i][j] = 'X';\n                }\n            }\n        }\n        \n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else {\n                rx.parent = ry;\n                ry.rank++;\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "130. Surrounded Regions"
     ]
   },
   {
-    "objectID": "200. Number of Islands.html",
-    "href": "200. Number of Islands.html",
+    "objectID": "problems/200. Number of Islands.html",
+    "href": "problems/200. Number of Islands.html",
     "title": "200. Number of Islands",
     "section": "",
     "text": "Problem\nThe original problem is defined here: 200. Number of Islands.\nThis is a classical graph connectivity problem. Lands are connected if they are adjacent either horizontally or vertically. Once we identify the sets of connected lands, we will know the number of islands.",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "200. Number of Islands"
     ]
   },
   {
-    "objectID": "200. Number of Islands.html#union-find",
-    "href": "200. Number of Islands.html#union-find",
+    "objectID": "problems/200. Number of Islands.html#union-find",
+    "href": "problems/200. Number of Islands.html#union-find",
     "title": "200. Number of Islands",
     "section": "Union Find",
     "text": "Union Find\nThis is an esier problem than 130. Surrounded Regions in that we just need to identify the connected lands and not worry about how to differentiate them.\n\nJava\nclass Solution {\n    public int numIslands(char[][] grid) {\n        // create the nodes for union find\n        int m = grid.length, n = grid[0].length;\n        Node[][] nodes = new Node[m][n];\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                nodes[i][j] = new Node();\n            }\n        }\n\n        // connect nodes\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (grid[i][j] == '0') continue;\n\n                if (j &lt; n - 1 && grid[i][j + 1] == '1') {\n                    uf.union(nodes[i][j], nodes[i][j + 1]);\n                }\n\n                if (i &lt; m - 1 && grid[i + 1][j] == '1') {\n                    uf.union(nodes[i][j], nodes[i + 1][j]);\n                }\n            }\n        }\n\n        // count distinct root nodes as the number of islands\n        Set&lt;Node&gt; set = new HashSet&lt;&gt;();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (grid[i][j] == '1') {\n                    set.add(uf.find(nodes[i][j]));\n                }\n            }\n        }\n        return set.size();\n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else {\n                rx.parent = ry;\n                ry.rank++;\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "200. Number of Islands"
     ]
   },
   {
-    "objectID": "200. Number of Islands.html#breadth-first-search",
-    "href": "200. Number of Islands.html#breadth-first-search",
+    "objectID": "problems/200. Number of Islands.html#breadth-first-search",
+    "href": "problems/200. Number of Islands.html#breadth-first-search",
     "title": "200. Number of Islands",
     "section": "Breadth First Search",
     "text": "Breadth First Search",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "200. Number of Islands"
     ]
   },
   {
-    "objectID": "200. Number of Islands.html#depth-first-search",
-    "href": "200. Number of Islands.html#depth-first-search",
+    "objectID": "problems/200. Number of Islands.html#depth-first-search",
+    "href": "problems/200. Number of Islands.html#depth-first-search",
     "title": "200. Number of Islands",
     "section": "Depth First Search",
     "text": "Depth First Search",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "200. Number of Islands"
     ]
   },
   {
-    "objectID": "352. Data Stream as Disjoint Intervals.html",
-    "href": "352. Data Stream as Disjoint Intervals.html",
+    "objectID": "problems/352. Data Stream as Disjoint Intervals.html",
+    "href": "problems/352. Data Stream as Disjoint Intervals.html",
     "title": "352. Data Stream as Disjoint Intervals",
     "section": "",
     "text": "Problem\nThe original problem is defined here: 352. Data Stream as Disjoint Intervals.",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "352. Data Stream as Disjoint Intervals"
     ]
   },
   {
-    "objectID": "352. Data Stream as Disjoint Intervals.html#union-find",
-    "href": "352. Data Stream as Disjoint Intervals.html#union-find",
+    "objectID": "problems/352. Data Stream as Disjoint Intervals.html#union-find",
+    "href": "problems/352. Data Stream as Disjoint Intervals.html#union-find",
     "title": "352. Data Stream as Disjoint Intervals",
     "section": "Union Find",
     "text": "Union Find\n\nJava\nclass SummaryRanges {\n    private Map&lt;Integer, Node&gt; map;\n    private UnionFind uf;\n    public SummaryRanges() {\n        this.map = new HashMap&lt;&gt;();   \n        this.uf = new UnionFind();\n    }\n    \n    public void addNum(int value) {\n        if (map.containsKey(value)) return;\n\n        Node node = new Node(value);\n        map.put(value, node);\n        if (map.containsKey(value - 1)) {\n            uf.union(node, map.get(value - 1));\n        }\n\n        if (map.containsKey(value + 1)) {\n            uf.union(node, map.get(value + 1));\n        }\n    }\n    \n    public int[][] getIntervals() {\n        Set&lt;Node&gt; nodes = new HashSet&lt;&gt;();\n        for (Node node : map.values()) {\n            Node root = uf.find(node);\n            nodes.add(root);\n        }\n\n        List&lt;Node&gt; sortedNodes = new ArrayList&lt;&gt;(nodes);\n        sortedNodes.sort((a, b) -&gt; Integer.compare(a.min, b.min));\n        int[][] res = new int[sortedNodes.size()][2];\n        for (int i = 0; i &lt; sortedNodes.size(); i++) {\n            res[i][0] = sortedNodes.get(i).min;\n            res[i][1] = sortedNodes.get(i).max;\n        }\n        return res;\n        \n    }\n\n    public class Node {\n        public int value;\n        public Node parent;\n        public int rank;\n        public int min;\n        public int max;\n\n        public Node(int value) {\n            this.value = value;\n            this.parent = this;\n            this.rank = 0;\n            this.min = value;\n            this.max = value;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n                rx.min = Math.min(rx.min, ry.min);\n                rx.max = Math.max(rx.max, ry.max);\n            } else if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n                ry.min = Math.min(ry.min, rx.min);\n                ry.max = Math.max(ry.max, rx.max);\n            } else {\n                ry.parent = rx;\n                rx.rank++;\n                rx.min = Math.min(rx.min, ry.min);\n                rx.max = Math.max(rx.max, ry.max);\n            }\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "352. Data Stream as Disjoint Intervals"
     ]
   },
   {
-    "objectID": "399. Evaluate Division.html",
-    "href": "399. Evaluate Division.html",
+    "objectID": "problems/399. Evaluate Division.html",
+    "href": "problems/399. Evaluate Division.html",
     "title": "399. Evaluate Division",
     "section": "",
     "text": "Problem\nThe original problem is defined here 399. Evaluate Division.",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "399. Evaluate Division"
     ]
   },
   {
-    "objectID": "399. Evaluate Division.html#union-find",
-    "href": "399. Evaluate Division.html#union-find",
+    "objectID": "problems/399. Evaluate Division.html#union-find",
+    "href": "problems/399. Evaluate Division.html#union-find",
     "title": "399. Evaluate Division",
     "section": "Union Find",
     "text": "Union Find\nThis is a very interesting union find application.\nTo apply union find, we first define the Node class to represent a variable. One key element in the class is the weight attribute which denotes the weight from the current node to its parent node. For example, with the equation a / b = 2.0, we could define node a and b correspondingly, and set a.parent = b and a.weight = 2.0.\nThe UnionFind class defines the two key operations: union(Node x, Node y, double value) and find(Node node).\n\nunion(): this function connects two nodes together.\nfind(): this function not only looks up the root node of the given node, but also compresses the path along the path.\n\nWithin the union() function, it might not be obvious why we have rx.weight = value * y.weight / x.weight. To derive this, consider the following scenario:\n\na / b = 2.0\nc / d = 2.0\n\nNow we have a.parent = b and a.weight = 2.0. In addition, we have c.parent = d and c.weight = 2.0.\nSuppose we have another euqation a / c = 3.0 and we need to call union(c, d, 3.0). Realize that:\n\na = a.weight * b\nc = c.weight * d\n\nNow we have \\(\\frac{c}{d} = \\frac{a.weight \\times b}{c.weight \\times d} = 3.0\\). Then we can have b / d = 3.0 * c.weight / a.weight, which is the formula used in the union() function.\nNote that we are seprating the union find data structure from the algorithm operating on it. Specifically, we use a map to hold all the nodes that represent all the variables given in the equations. The UnionFind class defines the operations on the map.\nclass Solution {\n    public double[] calcEquation(List&lt;List&lt;String&gt;&gt; equations, double[] values, List&lt;List&lt;String&gt;&gt; queries) {\n        Map&lt;String, Node&gt; map = new HashMap&lt;&gt;();\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; equations.size(); i++) {\n            List&lt;String&gt; lst = equations.get(i);\n            String a = lst.get(0);\n            String b = lst.get(1);\n            double value = values[i];\n\n            if (!map.containsKey(a)) {\n                map.put(a, new Node());\n            }\n            if (!map.containsKey(b)) {\n                map.put(b, new Node());\n            }\n\n            uf.union(map.get(a), map.get(b), value);\n        }\n\n        double[] res = new double[queries.size()];\n        for (int i = 0; i &lt; queries.size(); i++) {\n            List&lt;String&gt; lst = queries.get(i);\n            String a = lst.get(0), b = lst.get(1);\n            if (map.containsKey(a) && map.containsKey(b) && uf.find(map.get(a)) == uf.find(map.get(b))) {\n                res[i] = map.get(a).weight / map.get(b).weight;\n            } else {\n                res[i] = -1;\n            }\n        }\n        return res;\n    }\n\n    public class Node {\n        public Node parent;\n        public double weight;\n\n        public Node() {\n            this.parent = this;\n            this.weight = 1.0;\n        }\n    }\n\n    public class UnionFind {\n        public void union(Node x, Node y, double value) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return;\n\n            rx.parent = ry;\n            rx.weight = value * y.weight / x.weight;\n        }\n\n        public Node find(Node node) {\n            Node temp = node;\n            double weight = 1.0;\n            while (temp != temp.parent) {\n                weight *= temp.weight;\n                temp = temp.parent;\n            }\n            node.parent = temp;\n            node.weight = weight;\n            return node.parent;\n        }\n    }\n}",
     "crumbs": [
-      "Solutions",
+      "Problems",
       "399. Evaluate Division"
+    ]
+  },
+  {
+    "objectID": "problems/684. Redundant Connection.html",
+    "href": "problems/684. Redundant Connection.html",
+    "title": "684. Redundant Connection",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here 684. Redundant Connection.",
+    "crumbs": [
+      "Problems",
+      "684. Redundant Connection"
+    ]
+  },
+  {
+    "objectID": "problems/684. Redundant Connection.html#union-find",
+    "href": "problems/684. Redundant Connection.html#union-find",
+    "title": "684. Redundant Connection",
+    "section": "Union Find",
+    "text": "Union Find\nHere is my implementation in Java:\nclass Solution {\n    public int[] findRedundantConnection(int[][] edges) {\n        int n = edges.length;\n        Map&lt;Integer, Node&gt; map = new HashMap&lt;&gt;();\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; n; i++) {\n            int n1 = edges[i][0];\n            int n2 = edges[i][1];\n            if (!map.containsKey(n1)) map.put(n1, new Node());\n            if (!map.containsKey(n2)) map.put(n2, new Node());\n\n            if (!uf.union(map.get(n1), map.get(n2))) {\n                return new int[]{n1, n2};\n            }\n        }\n        return new int[]{};\n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public boolean union(Node x, Node y) {\n            Node rx = find(x);\n            Node ry = find(y);\n            if (rx == ry) return false;\n\n            if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else {\n                ry.parent = rx;\n                rx.rank++;\n            }\n            return true;\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "684. Redundant Connection"
+    ]
+  },
+  {
+    "objectID": "problems/695. Max Area of Island.html",
+    "href": "problems/695. Max Area of Island.html",
+    "title": "695. Max Area of Island",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 695. Max Area of Island.",
+    "crumbs": [
+      "Problems",
+      "695. Max Area of Island"
+    ]
+  },
+  {
+    "objectID": "problems/695. Max Area of Island.html#union-find",
+    "href": "problems/695. Max Area of Island.html#union-find",
+    "title": "695. Max Area of Island",
+    "section": "Union Find",
+    "text": "Union Find\nI wish I could say this for every leetcode problem, but it is straightforward once we recognize that union find is applicable to this problem. If we see every cell in the grid as a node in a graph, and an island is just a set of connected nodes. Identifying the island with the maximal area requires us to find the islands first, in other words, we need to connect the cells into islands first.\nThe idea here is use a Node class to represent a cell in the graph. A Node object keeps track of its parent node and how many nodes are connected in the current island.\nclass Solution {\n    public int maxAreaOfIsland(int[][] grid) {\n        int m = grid.length, n = grid[0].length;\n        Node[][] nodes = new Node[m][n];\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                nodes[i][j] = new Node();\n            }\n        }\n\n        int maxArea = 0;\n        UnionFind uf = new UnionFind();\n        for (int i = 0; i &lt; m; i++) {\n            for (int j = 0; j &lt; n; j++) {\n                if (grid[i][j] == 0) continue;\n                maxArea = Math.max(maxArea, nodes[i][j].size);\n\n                if (j &lt; n - 1 && grid[i][j + 1] == 1) {\n                    int size = uf.union(nodes[i][j], nodes[i][j + 1]);\n                    maxArea = Math.max(maxArea, size);\n                }\n\n                if (i &lt; m - 1 && grid[i + 1][j] == 1) {\n                    int size = uf.union(nodes[i][j], nodes[i + 1][j]);\n                    maxArea = Math.max(maxArea, size);\n                }\n            }\n        }\n        return maxArea;\n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n        public int size;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n            this.size = 1;\n        }\n    }\n\n    public class UnionFind {\n        public int union(Node x, Node y) {\n            Node rx = find(x), ry = find(y);\n            if (rx == ry) return rx.size;\n\n            if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n                ry.size += rx.size;\n                return ry.size;\n            } else if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n                rx.size += ry.size;\n                return rx.size;\n            } else {\n                rx.parent = ry;\n                ry.rank++;\n                ry.size += rx.size;\n                return ry.size;\n            }\n        }\n\n        public Node find(Node node) {\n            Node temp = node;\n            while (temp != temp.parent) {\n                temp = temp.parent;\n            }\n            node.parent = temp;\n            return node.parent;\n        }\n    }",
+    "crumbs": [
+      "Problems",
+      "695. Max Area of Island"
     ]
   }
 ]
