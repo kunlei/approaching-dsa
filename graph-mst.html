@@ -572,6 +572,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="kruskal" class="level2" data-number="12.3">
 <h2 data-number="12.3" class="anchored" data-anchor-id="kruskal"><span class="header-section-number">12.3</span> Kruskal</h2>
+<p>Kruskal’s algorithm is a popular algorithm used to find the Minimum Spanning Tree (MST) of a graph. The MST is a subset of the edges of a connected, weighted, undirected graph that connects all the vertices together without any cycles and with the minimum possible total edge weight. Here is a step-by-step explanation of Kruskal’s algorithm:</p>
+<ol type="1">
+<li><p><strong>Sort all the edges in the graph</strong> in non-decreasing order of their weights.</p></li>
+<li><p><strong>Initialize the MST</strong> as an empty set. This set will store the edges that are part of the MST.</p></li>
+<li><p><strong>Initialize a disjoint-set (union-find) data structure</strong>. This helps to manage and detect cycles in the graph as edges are added to the MST. Each vertex starts as its own set.</p></li>
+<li><p><strong>Iterate through the sorted edges</strong>:</p>
+<ul>
+<li>For each edge, check if the vertices of the edge belong to different sets using the union-find structure. This check ensures that adding the edge won’t form a cycle.</li>
+<li>If they belong to different sets, add the edge to the MST and union the sets of the two vertices.</li>
+</ul></li>
+<li><p><strong>Repeat step 4</strong> until the MST contains exactly ( V-1 ) edges (where ( V ) is the number of vertices in the graph).</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">minCostConnectPoints</span><span class="op">(</span><span class="dt">int</span><span class="op">[][]</span> points<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n <span class="op">=</span> points<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>n <span class="op">&lt;</span> <span class="dv">2</span><span class="op">)</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">List</span><span class="op">&lt;</span>Edge<span class="op">&gt;</span> edges <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> j <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;</span> n<span class="op">;</span> j<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                edges<span class="op">.</span><span class="fu">add</span><span class="op">(</span><span class="kw">new</span> <span class="fu">Edge</span><span class="op">(</span>i<span class="op">,</span> j<span class="op">,</span> <span class="fu">calDist</span><span class="op">(</span>points<span class="op">,</span> i<span class="op">,</span> j<span class="op">)));</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        edges<span class="op">.</span><span class="fu">sort</span><span class="op">((</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">-&gt;</span> <span class="bu">Integer</span><span class="op">.</span><span class="fu">compare</span><span class="op">(</span>a<span class="op">.</span><span class="fu">dist</span><span class="op">,</span> b<span class="op">.</span><span class="fu">dist</span><span class="op">));</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// union find</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">,</span> <span class="bu">Node</span><span class="op">&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            map<span class="op">.</span><span class="fu">put</span><span class="op">(</span>i<span class="op">,</span> <span class="kw">new</span> <span class="bu">Node</span><span class="op">());</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        UnionFind uf <span class="op">=</span> <span class="kw">new</span> <span class="fu">UnionFind</span><span class="op">();</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> res <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Set</span><span class="op">&lt;</span>Edge<span class="op">&gt;</span> mst <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashSet</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        Edge e <span class="op">=</span> edges<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        mst<span class="op">.</span><span class="fu">add</span><span class="op">(</span>e<span class="op">);</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        res <span class="op">+=</span> e<span class="op">.</span><span class="fu">dist</span><span class="op">;</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        uf<span class="op">.</span><span class="fu">union</span><span class="op">(</span>map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>e<span class="op">.</span><span class="fu">start</span><span class="op">),</span> map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>e<span class="op">.</span><span class="fu">end</span><span class="op">));</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> idx <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>mst<span class="op">.</span><span class="fu">size</span><span class="op">()</span> <span class="op">!=</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> <span class="op">(</span>idx <span class="op">&lt;</span> edges<span class="op">.</span><span class="fu">size</span><span class="op">())</span> <span class="op">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                e <span class="op">=</span> edges<span class="op">.</span><span class="fu">get</span><span class="op">(</span>idx<span class="op">);</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>                <span class="dt">boolean</span> success <span class="op">=</span> uf<span class="op">.</span><span class="fu">union</span><span class="op">(</span>map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>e<span class="op">.</span><span class="fu">start</span><span class="op">),</span> map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>e<span class="op">.</span><span class="fu">end</span><span class="op">));</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>success<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>                    mst<span class="op">.</span><span class="fu">add</span><span class="op">(</span>e<span class="op">);</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>                    res <span class="op">+=</span> e<span class="op">.</span><span class="fu">dist</span><span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>                    idx<span class="op">++;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">;</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span> <span class="fu">calDist</span><span class="op">(</span><span class="dt">int</span><span class="op">[][]</span> points<span class="op">,</span> <span class="dt">int</span> i<span class="op">,</span> <span class="dt">int</span> j<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span><span class="op">(</span>points<span class="op">[</span>i<span class="op">][</span><span class="dv">0</span><span class="op">]</span> <span class="op">-</span> points<span class="op">[</span>j<span class="op">][</span><span class="dv">0</span><span class="op">])</span> <span class="op">+</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">abs</span><span class="op">(</span>points<span class="op">[</span>i<span class="op">][</span><span class="dv">1</span><span class="op">]</span> <span class="op">-</span> points<span class="op">[</span>j<span class="op">][</span><span class="dv">1</span><span class="op">]);</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> Edge <span class="op">{</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">int</span> start<span class="op">;</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">int</span> end<span class="op">;</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">int</span> dist<span class="op">;</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="fu">Edge</span><span class="op">(</span><span class="dt">int</span> s<span class="op">,</span> <span class="dt">int</span> e<span class="op">,</span> <span class="dt">int</span> d<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="fu">start</span> <span class="op">=</span> s<span class="op">;</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="fu">end</span> <span class="op">=</span> e<span class="op">;</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="fu">dist</span> <span class="op">=</span> d<span class="op">;</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> <span class="bu">Node</span> <span class="op">{</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="bu">Node</span> parent<span class="op">;</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">int</span> rank<span class="op">;</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="bu">Node</span><span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="fu">parent</span> <span class="op">=</span> <span class="kw">this</span><span class="op">;</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>            <span class="kw">this</span><span class="op">.</span><span class="fu">rank</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> UnionFind <span class="op">{</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">boolean</span> <span class="fu">union</span><span class="op">(</span><span class="bu">Node</span> x<span class="op">,</span> <span class="bu">Node</span> y<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>            <span class="bu">Node</span> rx <span class="op">=</span> <span class="fu">find</span><span class="op">(</span>x<span class="op">),</span> ry <span class="op">=</span> <span class="fu">find</span><span class="op">(</span>y<span class="op">);</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>rx <span class="op">==</span> ry<span class="op">)</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>rx<span class="op">.</span><span class="fu">rank</span> <span class="op">&gt;</span> ry<span class="op">.</span><span class="fu">rank</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>                ry<span class="op">.</span><span class="fu">parent</span> <span class="op">=</span> rx<span class="op">;</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>rx<span class="op">.</span><span class="fu">rank</span> <span class="op">&lt;</span> ry<span class="op">.</span><span class="fu">rank</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                rx<span class="op">.</span><span class="fu">parent</span> <span class="op">=</span> ry<span class="op">;</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>                ry<span class="op">.</span><span class="fu">parent</span> <span class="op">=</span> rx<span class="op">;</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>                rx<span class="op">.</span><span class="fu">rank</span><span class="op">++;</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="bu">Node</span> <span class="fu">find</span><span class="op">(</span><span class="bu">Node</span> node<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> <span class="op">(</span>node <span class="op">!=</span> node<span class="op">.</span><span class="fu">parent</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>                node <span class="op">=</span> node<span class="op">.</span><span class="fu">parent</span><span class="op">;</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> node<span class="op">;</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="references" class="level2" data-number="12.4">
 <h2 data-number="12.4" class="anchored" data-anchor-id="references"><span class="header-section-number">12.4</span> References</h2>
