@@ -370,7 +370,18 @@
     "href": "graph-topological-sort.html",
     "title": "13  Topological Sort",
     "section": "",
-    "text": "13.1 The Algorithm",
+    "text": "13.1 The Algorithm\nTopological sorting is a linear ordering of vertices in a directed acyclic graph (DAG) such that for every directed edge uv from vertex u to vertex v, vertex u comes before v in the ordering. Topological sorting is only possible if the graph has no directed cycles, i.e., it must be a DAG.\nTopological sorting is commonly used in:\nOne common method to perform topological sorting is Kahn’s Algorithm, which uses in-degree (the number of incoming edges) of vertices:",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "graph-topological-sort.html#the-algorithm",
+    "href": "graph-topological-sort.html#the-algorithm",
+    "title": "13  Topological Sort",
+    "section": "",
+    "text": "Scheduling tasks: Determining the order in which tasks should be performed, where some tasks must be done before others.\nBuild systems: Resolving dependencies in build systems, where some components must be built before others.\nCourse prerequisite ordering: Determining the order in which courses should be taken based on prerequisites.\n\n\n\nInitialize:\n\nCalculate in-degrees of all vertices.\nInitialize a queue and enqueue all vertices with in-degree 0.\n\nProcess the queue:\n\nWhile the queue is not empty:\n\nDequeue a vertex u and add it to the topological order.\nFor each adjacent vertex v (i.e., vertices where there is an edge u -&gt; v):\n\nDecrease the in-degree of v by 1.\nIf in-degree of v becomes 0, enqueue v.\n\n\n\nCheck for cycles:\n\nIf the topological order contains all vertices, the graph is a DAG.\nIf not, the graph contains a cycle, and topological sorting is not possible.",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
@@ -381,7 +392,29 @@
     "href": "graph-topological-sort.html#practise-problems",
     "title": "13  Topological Sort",
     "section": "13.2 Practise Problems",
-    "text": "13.2 Practise Problems\n\n207. Course Schedule\n210. Course Schedule II\n1462. Course Schedule IV\n802. Find Eventual Safe States\n851. Loud and Rich\n913. Cat and Mouse\n2192. All Ancestors of a Node in a Directed Acyclic Graph",
+    "text": "13.2 Practise Problems\n\n207. Course Schedule\n210. Course Schedule II\n329. Longest Increasing Path in a Matrix\n802. Find Eventual Safe States\n851. Loud and Rich\n913. Cat and Mouse\n1203. Sort Items by Groups Respecting Dependencies\n1462. Course Schedule IV\n2192. All Ancestors of a Node in a Directed Acyclic Graph",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "graph-topological-sort.html#implementation",
+    "href": "graph-topological-sort.html#implementation",
+    "title": "13  Topological Sort",
+    "section": "13.3 Implementation",
+    "text": "13.3 Implementation\n\n13.3.1 Java",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
+    ]
+  },
+  {
+    "objectID": "graph-topological-sort.html#reference",
+    "href": "graph-topological-sort.html#reference",
+    "title": "13  Topological Sort",
+    "section": "13.4 Reference",
+    "text": "13.4 Reference\n\nIntroduction to Topological Sort",
     "crumbs": [
       "Graphs",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Topological Sort</span>"
@@ -451,6 +484,50 @@
     "crumbs": [
       "Problems",
       "200. Number of Islands"
+    ]
+  },
+  {
+    "objectID": "problems/207. Course Schedule.html",
+    "href": "problems/207. Course Schedule.html",
+    "title": "207. Course Schedule",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 207. Course Schedule.",
+    "crumbs": [
+      "Problems",
+      "207. Course Schedule"
+    ]
+  },
+  {
+    "objectID": "problems/207. Course Schedule.html#topological-sort",
+    "href": "problems/207. Course Schedule.html#topological-sort",
+    "title": "207. Course Schedule",
+    "section": "Topological Sort",
+    "text": "Topological Sort\nThe code below determines if all courses can be finished given a list of prerequisites. It utilizes Kahn’s Algorithm for topological sorting. Here are some key points:\n\nIn-degree and Adjacency List Construction\n\nindegree Array: This array tracks the number of prerequisites (in-degrees) for each course.\nmap (Adjacency List): This stores the list of courses dependent on each course. For each pair (a, b) in prerequisites, course a depends on course b. Thus:\n\nindegree[a] is incremented by 1.\nCourse a is added to the list in map.get(b).\n\n\nQueue Initialization\n\nA queue que is initialized to store courses with no prerequisites (i.e., indegree[i] == 0), as these can be taken immediately.\n\nTopological Sorting and Cycle Detection\n\nCourses are processed from the queue, simulating the “removal” of these courses and their effect on other courses.\nFor each course processed, its dependent courses have their in-degrees decremented. If a course’s in-degree becomes 0, it is added to the queue.\nA count variable is used to keep track of the number of courses processed.\n\nResult Determination\n\nIf count equals numCourses, it indicates that all courses can be completed (i.e., the graph has no cycles and all courses can be ordered). Otherwise, it’s not possible to finish all courses due to a cycle in the prerequisites.\n\n\nclass Solution {\n    public boolean canFinish(int numCourses, int[][] prerequisites) {\n        // keep track of the indegree and connected courses for each course\n        int[] indegree = new int[numCourses];\n        Map&lt;Integer, List&lt;Integer&gt;&gt; map = new HashMap&lt;&gt;();\n        for (int i = 0; i &lt; prerequisites.length; i++) {\n            int a = prerequisites[i][0], b = prerequisites[i][1];\n            indegree[a]++;\n            if (map.containsKey(b)) {\n                map.get(b).add(a);\n            } else {\n                List&lt;Integer&gt; lst = new ArrayList&lt;&gt;();\n                lst.add(a);\n                map.put(b, lst);\n            }\n        }\n\n        // identify all the courses with no prerequisites\n        Queue&lt;Integer&gt; que = new LinkedList&lt;&gt;();\n        for (int i = 0; i &lt; numCourses; i++) {\n            if (indegree[i] == 0) {\n                que.offer(i);\n            }\n        }\n\n        // keep remove courses with no prerequisites and their following courses\n        int count = 0;\n        while (!que.isEmpty()) {\n            int num = que.poll();\n            count++;\n            List&lt;Integer&gt; connections = map.getOrDefault(num, Collections.emptyList());\n            for (int next : connections) {\n                indegree[next]--;\n                if (indegree[next] == 0) {\n                    que.offer(next);\n                }\n            }\n        }\n\n        return count == numCourses;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "207. Course Schedule"
+    ]
+  },
+  {
+    "objectID": "problems/210. Course Schedule II.html",
+    "href": "problems/210. Course Schedule II.html",
+    "title": "210. Course Schedule II",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 210. Course Schedule II.",
+    "crumbs": [
+      "Problems",
+      "210. Course Schedule II"
+    ]
+  },
+  {
+    "objectID": "problems/210. Course Schedule II.html#topological-sort",
+    "href": "problems/210. Course Schedule II.html#topological-sort",
+    "title": "210. Course Schedule II",
+    "section": "Topological Sort",
+    "text": "Topological Sort\nThe provided code below solves the problem of determining the order in which courses should be taken given a list of prerequisites. The solution involves topological sorting using Kahn’s Algorithm. Below are the key points:\n\nIn-degree and Adjacency List Initialization\n\nindegree Array: This array keeps track of the number of prerequisites (in-degrees) for each course.\nmap (Adjacency List): This stores the list of courses dependent on each course. Each course has a list of subsequent courses that depend on it.\nFor each pair (a, b) in prerequisites, course a depends on course b. Thus:\n\nindegree[a] is incremented by 1.\nCourse a is added to the list in map.get(b).\n\n\nQueue Initialization\n\nA queue que is initialized to store courses with no prerequisites (indegree[i] == 0), indicating they can be taken first.\n\nTopological Sorting and Order Determination\n\nProcessing the Queue: Courses are dequeued one by one, simulating the “removal” of these courses and their effect on other courses.\nResult Array: The res array is used to store the order of courses as they are processed.\nUpdating In-degrees: For each course processed, its dependent courses have their in-degrees decremented. If a course’s in-degree becomes 0, it is added to the queue.\n\nChecking for Completion\n\nCompletion Check: The count variable keeps track of the number of courses processed. If count equals numCourses, all courses can be taken, and the res array containing the course order is returned.\nCycle Detection: If count is not equal to numCourses, the graph contains a cycle, making it impossible to complete all courses. In this case, an empty array is returned.\n\n\nclass Solution {\n    public int[] findOrder(int numCourses, int[][] prerequisites) {\n        int[] indegree = new int[numCourses];\n        Map&lt;Integer, List&lt;Integer&gt;&gt; map = new HashMap&lt;&gt;();\n        for (int i = 0; i &lt; numCourses; i++) {\n            map.put(i, new ArrayList&lt;&gt;());\n        }\n        for (int i = 0; i &lt; prerequisites.length; i++) {\n            int a = prerequisites[i][0], b = prerequisites[i][1];\n            indegree[a]++;\n            map.get(b).add(a);\n        }\n\n        Queue&lt;Integer&gt; que = new LinkedList&lt;&gt;();\n        for (int i = 0; i &lt; numCourses; i++) {\n            if (indegree[i] == 0) {\n                que.offer(i);\n            }\n        }\n\n        int count = 0;\n        int[] res = new int[numCourses];\n        while (!que.isEmpty()) {\n            int curr = que.poll();\n            res[count++] = curr;\n\n            for (int next : map.get(curr)) {\n                indegree[next]--;\n                if (indegree[next] == 0) {\n                    que.offer(next);\n                }\n            }\n        }\n        \n        return count == numCourses ? res : new int[0];\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "210. Course Schedule II"
     ]
   },
   {
