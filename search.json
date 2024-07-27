@@ -421,6 +421,39 @@
     ]
   },
   {
+    "objectID": "graph-dijkstra.html",
+    "href": "graph-dijkstra.html",
+    "title": "14  Dijkstra’s Algorithm",
+    "section": "",
+    "text": "14.1 Practice Problems",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Dijkstra's Algorithm</span>"
+    ]
+  },
+  {
+    "objectID": "graph-dijkstra.html#practice-problems",
+    "href": "graph-dijkstra.html#practice-problems",
+    "title": "14  Dijkstra’s Algorithm",
+    "section": "",
+    "text": "No.\nProblem\nAttempt Count\nLast Attempt\n\n\n\n\n1\n743. Network Delay Time\n\n\n\n\n2\n787. Cheapest Flights Within K Stops\n\n\n\n\n3\n882. Reachable Nodes In Subdivided Graph\n\n\n\n\n4\n1514. Path with Maximum Probability\n\n\n\n\n5\n1334. Find the City With the Smallest Number of Neighbors at a Threshold Distance\n\n\n\n\n6\n1368. Minimum Cost to Make at Least One Valid Path in a Grid\n\n\n\n\n7\n1631. Path With Minimum Effort\n\n\n\n\n8\n1786. Number of Restricted Paths From First to Last Node\n\n\n\n\n9\n1976. Number of Ways to Arrive at Destination\n\n\n\n\n11\n2045. Second Minimum Time to Reach Destination\n\n\n\n\n12\n2290. Minimum Obstacle Removal to Reach Corner\n\n\n\n\n13\n1293. Shortest Path in a Grid with Obstacles Elimination\n\n\n\n\n13\n\n\n\n\n\n13\n\n\n\n\n\n13",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Dijkstra's Algorithm</span>"
+    ]
+  },
+  {
+    "objectID": "graph-dijkstra.html#dijkstras-algorithm",
+    "href": "graph-dijkstra.html#dijkstras-algorithm",
+    "title": "14  Dijkstra’s Algorithm",
+    "section": "14.2 Dijkstra’s Algorithm",
+    "text": "14.2 Dijkstra’s Algorithm",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Dijkstra's Algorithm</span>"
+    ]
+  },
+  {
     "objectID": "problems/130. Surrounded Regions.html",
     "href": "problems/130. Surrounded Regions.html",
     "title": "130. Surrounded Regions",
@@ -635,6 +668,17 @@
     "title": "1584. Min Cost to Connect All Points",
     "section": "Prim’s Algorithm",
     "text": "Prim’s Algorithm\nclass Solution {\n    public int minCostConnectPoints(int[][] points) {\n        int n = points.length;\n        Set&lt;Integer&gt; mst = new HashSet&lt;&gt;();\n        int[] dist = new int[n];\n\n        // pick starting node\n        mst.add(0);\n        for (int i = 1; i &lt; n; i++) {\n            dist[i] = calDist(points, 0, i);\n        }\n\n        // keep adding new nodes\n        int res = 0;\n        while (mst.size() != n) {\n            // pick the node with the shortest distance to the nodes in the current mst\n            int next = -1;\n            for (int i = 0; i &lt; n; i++) {\n                if (mst.contains(i)) continue;\n                if (next &lt; 0 || dist[next] &gt; dist[i]) next = i;\n            }\n\n            // add the new node to the mst\n            mst.add(next);\n            res += dist[next];\n\n            // update the distances\n            for (int i = 0; i &lt; n; i++) {\n                if (mst.contains(i)) continue;\n                int newDist = calDist(points, next, i);\n                if (newDist &lt; dist[i]) dist[i] = newDist;\n            }\n\n        }\n        return res;\n    }\n\n    private int calDist(int[][] points, int x, int y) {\n        return Math.abs(points[x][0] - points[y][0]) + Math.abs(points[x][1] - points[y][1]);\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "1584. Min Cost to Connect All Points"
+    ]
+  },
+  {
+    "objectID": "problems/1584. Min Cost to Connect All Points.html#kruskals-algorithm",
+    "href": "problems/1584. Min Cost to Connect All Points.html#kruskals-algorithm",
+    "title": "1584. Min Cost to Connect All Points",
+    "section": "Kruskal’s Algorithm",
+    "text": "Kruskal’s Algorithm\nclass Solution {\n    public int minCostConnectPoints(int[][] points) {\n        if (points.length &lt; 2) return 0;\n\n        List&lt;Edge&gt; edges = new ArrayList&lt;&gt;();\n        int n = points.length;\n        for (int i = 0; i &lt; n; i++) {\n            for (int j = i + 1; j &lt; n; j++) {\n                int dist = Math.abs(points[i][0] - points[j][0]) + Math.abs(points[i][1] - points[j][1]);\n                edges.add(new Edge(i, j, dist));\n            }\n        }\n        edges.sort((a, b) -&gt; Integer.compare(a.dist, b.dist));\n\n        // define union-find dsa\n        Map&lt;Integer, Node&gt; map = new HashMap&lt;&gt;();\n        for (int i = 0; i &lt; n; i++) {\n            map.put(i, new Node());\n        }\n        UnionFind uf = new UnionFind();\n\n        Set&lt;Edge&gt; mst = new HashSet&lt;&gt;();\n        int eIdx = 0;\n        int res = 0;\n        while (mst.size() != n - 1) {\n            // pick the edge with the shortest distance\n            Edge curr = edges.get(eIdx++);\n\n            // check if adding the edge to the mst will create a cycle\n            boolean success = uf.union(map.get(curr.start), map.get(curr.end));\n            if (success) {\n                mst.add(curr);\n                res += curr.dist;\n            }\n        }\n        return res;\n    }\n\n    public class Node {\n        public Node parent;\n        public int rank;\n\n        public Node() {\n            this.parent = this;\n            this.rank = 0;\n        }\n    }\n\n    public class UnionFind {\n        public boolean union(Node x, Node y) {\n            Node rx = find(x), ry = find(y);\n            if (rx == ry) return false;\n\n            if (rx.rank &gt; ry.rank) {\n                ry.parent = rx;\n            } else if (rx.rank &lt; ry.rank) {\n                rx.parent = ry;\n            } else {\n                ry.parent = rx;\n                rx.rank++;\n            }\n            return true;\n        }\n\n        public Node find(Node node) {\n            while (node != node.parent) {\n                node = node.parent;\n            }\n            return node;\n        }\n    }\n\n    public class Edge {\n        public int start;\n        public int end;\n        public int dist;\n\n        public Edge(int s, int e, int d) {\n            this.start = s;\n            this.end = e;\n            this.dist = d;\n        }\n    }\n}",
     "crumbs": [
       "Problems",
       "1584. Min Cost to Connect All Points"
