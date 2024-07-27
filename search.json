@@ -652,6 +652,28 @@
     ]
   },
   {
+    "objectID": "problems/743. Network Delay Time.html",
+    "href": "problems/743. Network Delay Time.html",
+    "title": "743. Network Delay Time",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 743. Network Delay Time.",
+    "crumbs": [
+      "Problems",
+      "743. Network Delay Time"
+    ]
+  },
+  {
+    "objectID": "problems/743. Network Delay Time.html#dijkstras-algorithm",
+    "href": "problems/743. Network Delay Time.html#dijkstras-algorithm",
+    "title": "743. Network Delay Time",
+    "section": "Dijkstra’s Algorithm",
+    "text": "Dijkstra’s Algorithm\n\nBasic version\nclass Solution {\n    public int networkDelayTime(int[][] times, int n, int k) {\n        if (n &lt; 2) return 0;\n\n        // construct graph\n        Map&lt;Integer, Map&lt;Integer, Integer&gt;&gt; graph = new HashMap&lt;&gt;();\n        for (int i = 1; i &lt;= n; i++) {\n            graph.put(i, new HashMap&lt;&gt;());\n        }\n        for (int[] time : times) {\n            graph.get(time[0]).put(time[1], time[2]);\n        }\n\n        int[] minTime = new int[n + 1];\n        Arrays.fill(minTime, Integer.MAX_VALUE);\n\n        boolean[] visited = new boolean[n + 1];\n        Arrays.fill(visited, false);\n\n        // set the source node as k\n        minTime[k] = 0;\n\n        for (int i = 0; i &lt; n; i++) {\n            // select the node with the shortest time from the source node\n            int curr = -1;\n            int time = Integer.MAX_VALUE;\n            for (int j = 1; j &lt;= n; j++) {\n                if (!visited[j] && minTime[j] &lt; time) {\n                    time = minTime[j];\n                    curr = j;\n                }\n            }\n            if (curr &lt; 0) return -1;\n\n            // mark the node as visited\n            visited[curr] = true;\n\n            // update distance array\n            Map&lt;Integer, Integer&gt; connections = graph.get(curr);\n            for (int next : connections.keySet()) {\n                if (minTime[curr] + connections.get(next) &lt; minTime[next]) {\n                    minTime[next] = minTime[curr] + connections.get(next);\n                }\n            }\n        }\n        \n        int res = -1;\n        for (int i = 1; i &lt;= n; i++) {\n            res = Math.max(res, minTime[i]);\n        }\n        return res == Integer.MAX_VALUE ? -1 : res;\n    }\n}\n\n\nOptimized version",
+    "crumbs": [
+      "Problems",
+      "743. Network Delay Time"
+    ]
+  },
+  {
     "objectID": "problems/1584. Min Cost to Connect All Points.html",
     "href": "problems/1584. Min Cost to Connect All Points.html",
     "title": "1584. Min Cost to Connect All Points",
