@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Hello, DSA!",
     "section": "",
-    "text": "Preface\nSolving optimization problems is my passion, but in my work, building mathematical models typically doesn’t take much time. Instead, I spend most of my time implementing and fine-tuning various algorithms to solve real-world problems. I take great pleasure in transforming optimization models into software products, which requires proficient coding skills.\nJava used to be my favorite programming language, but now Python is my second favorite, especially as I delve deeper into machine learning projects in recent years. I created this personal notebook to document my journey in improving my skills in data structures and algorithms, as well as to continue honing my Java and Python expertise.",
+    "text": "Preface",
     "crumbs": [
       "Preface"
     ]
@@ -14,67 +14,27 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Interesting Algorithms",
+    "text": "1.1 Stack",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "intro.html#two-pointers",
-    "href": "intro.html#two-pointers",
+    "objectID": "intro.html#stack",
+    "href": "intro.html#stack",
     "title": "1  Introduction",
-    "section": "1.2 Two Pointers",
-    "text": "1.2 Two Pointers\n\n27. Remove Element\n26. Remove Duplicates from Sorted Array\n1. Two Sum\n15. 3Sum\n18. 4Sum\n283. Move Zeroes\n844. Backspace String Compare\n977. Squares of a Sorted Array\n344. Reverse String\n151. Reverse Words in a String\n206. Reverse Linked List\n19. Remove Nth Node From End of List\n160. Intersection of Two Linked Lists\n142. Linked List Cycle II\n2. Add Two Numbers\n217. Contains Duplicate\n53. Maximum Subarray\n9. Palindrome Number\n13. Roman to Integer",
+    "section": "",
+    "text": "20. Valid Parentheses\n22. Generate Parentheses\n84. Largest Rectangle in Histogram\n150. Evaluate Reverse Polish Notation\n155. Min Stack\n456. 132 Pattern\n496. Next Greater Element I\n503. Next Greater Element II\n581. Shortest Unsorted Continuous Subarray\n739. Daily Temperatures\n853. Car Fleet\n901. Online Stock Span\n907. Sum of Subarray Minimums",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
   },
   {
-    "objectID": "intro.html#sliding-window",
-    "href": "intro.html#sliding-window",
+    "objectID": "intro.html#arrays",
+    "href": "intro.html#arrays",
     "title": "1  Introduction",
-    "section": "1.3 Sliding Window",
-    "text": "1.3 Sliding Window",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#binary-search",
-    "href": "intro.html#binary-search",
-    "title": "1  Introduction",
-    "section": "1.4 Binary Search",
-    "text": "1.4 Binary Search\n\n704. Binary Search\n278. First Bad Version\n1011. Capacity To Ship Packages Within D Days\n2187. Minimum Time to Complete Trips\n875. Koko Eating Bananas\n34. Find First and Last Position of Element in Sorted Array\n74. Search a 2D Matrix\n153. Find Minimum in Rotated Sorted Array\n33. Search in Rotated Sorted Array\n981. Time Based Key-Value Store\n4. Median of Two Sorted Arrays\n2089. Find Target Indices After Sorting Array",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#tree",
-    "href": "intro.html#tree",
-    "title": "1  Introduction",
-    "section": "1.5 Tree",
-    "text": "1.5 Tree",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#backtracking",
-    "href": "intro.html#backtracking",
-    "title": "1  Introduction",
-    "section": "1.6 Backtracking",
-    "text": "1.6 Backtracking",
-    "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
-    ]
-  },
-  {
-    "objectID": "intro.html#dynamic-programming",
-    "href": "intro.html#dynamic-programming",
-    "title": "1  Introduction",
-    "section": "1.7 Dynamic Programming",
-    "text": "1.7 Dynamic Programming",
+    "section": "1.2 Arrays",
+    "text": "1.2 Arrays\n\n27. Remove Element\n26. Remove Duplicates from Sorted Array\n1. Two Sum\n15. 3Sum\n18. 4Sum\n283. Move Zeroes\n844. Backspace String Compare\n977. Squares of a Sorted Array\n344. Reverse String\n151. Reverse Words in a String\n206. Reverse Linked List\n19. Remove Nth Node From End of List\n160. Intersection of Two Linked Lists\n142. Linked List Cycle II\n2. Add Two Numbers\n217. Contains Duplicate\n53. Maximum Subarray\n9. Palindrome Number\n13. Roman to Integer\n704. Binary Search\n278. First Bad Version\n1011. Capacity To Ship Packages Within D Days\n2187. Minimum Time to Complete Trips\n875. Koko Eating Bananas\n34. Find First and Last Position of Element in Sorted Array\n74. Search a 2D Matrix\n153. Find Minimum in Rotated Sorted Array\n33. Search in Rotated Sorted Array\n981. Time Based Key-Value Store\n4. Median of Two Sorted Arrays\n2089. Find Target Indices After Sorting Array",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -454,6 +414,28 @@
     ]
   },
   {
+    "objectID": "graph-bellman-ford.html",
+    "href": "graph-bellman-ford.html",
+    "title": "15  Bellman-Ford Algorithm",
+    "section": "",
+    "text": "15.1 Practice Problem",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Bellman-Ford Algorithm</span>"
+    ]
+  },
+  {
+    "objectID": "graph-bellman-ford.html#bellman-ford-algorithm",
+    "href": "graph-bellman-ford.html#bellman-ford-algorithm",
+    "title": "15  Bellman-Ford Algorithm",
+    "section": "15.2 Bellman-Ford Algorithm",
+    "text": "15.2 Bellman-Ford Algorithm",
+    "crumbs": [
+      "Graphs",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Bellman-Ford Algorithm</span>"
+    ]
+  },
+  {
     "objectID": "problems/130. Surrounded Regions.html",
     "href": "problems/130. Surrounded Regions.html",
     "title": "130. Surrounded Regions",
@@ -652,6 +634,28 @@
     ]
   },
   {
+    "objectID": "problems/739. Daily Temperatures.html",
+    "href": "problems/739. Daily Temperatures.html",
+    "title": "739. Daily Temperatures",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 739. Daily Temperatures.",
+    "crumbs": [
+      "Problems",
+      "739. Daily Temperatures"
+    ]
+  },
+  {
+    "objectID": "problems/739. Daily Temperatures.html#solution",
+    "href": "problems/739. Daily Temperatures.html#solution",
+    "title": "739. Daily Temperatures",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    public int[] dailyTemperatures(int[] temperatures) {\n        int n = temperatures.length;\n        int[] res = new int[n];\n\n        Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();\n        for (int i = 0; i &lt; n; i++) {\n            while (!stack.isEmpty() && temperatures[i] &gt; temperatures[stack.peek()]) {\n                int idx = stack.pop();\n                res[idx] = i - idx;\n            }\n            stack.push(i);\n        }\n        return res;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "739. Daily Temperatures"
+    ]
+  },
+  {
     "objectID": "problems/743. Network Delay Time.html",
     "href": "problems/743. Network Delay Time.html",
     "title": "743. Network Delay Time",
@@ -667,10 +671,43 @@
     "href": "problems/743. Network Delay Time.html#dijkstras-algorithm",
     "title": "743. Network Delay Time",
     "section": "Dijkstra’s Algorithm",
-    "text": "Dijkstra’s Algorithm\n\nBasic version\nclass Solution {\n    public int networkDelayTime(int[][] times, int n, int k) {\n        if (n &lt; 2) return 0;\n\n        // construct graph\n        Map&lt;Integer, Map&lt;Integer, Integer&gt;&gt; graph = new HashMap&lt;&gt;();\n        for (int i = 1; i &lt;= n; i++) {\n            graph.put(i, new HashMap&lt;&gt;());\n        }\n        for (int[] time : times) {\n            graph.get(time[0]).put(time[1], time[2]);\n        }\n\n        int[] minTime = new int[n + 1];\n        Arrays.fill(minTime, Integer.MAX_VALUE);\n\n        boolean[] visited = new boolean[n + 1];\n        Arrays.fill(visited, false);\n\n        // set the source node as k\n        minTime[k] = 0;\n\n        for (int i = 0; i &lt; n; i++) {\n            // select the node with the shortest time from the source node\n            int curr = -1;\n            int time = Integer.MAX_VALUE;\n            for (int j = 1; j &lt;= n; j++) {\n                if (!visited[j] && minTime[j] &lt; time) {\n                    time = minTime[j];\n                    curr = j;\n                }\n            }\n            if (curr &lt; 0) return -1;\n\n            // mark the node as visited\n            visited[curr] = true;\n\n            // update distance array\n            Map&lt;Integer, Integer&gt; connections = graph.get(curr);\n            for (int next : connections.keySet()) {\n                if (minTime[curr] + connections.get(next) &lt; minTime[next]) {\n                    minTime[next] = minTime[curr] + connections.get(next);\n                }\n            }\n        }\n        \n        int res = -1;\n        for (int i = 1; i &lt;= n; i++) {\n            res = Math.max(res, minTime[i]);\n        }\n        return res == Integer.MAX_VALUE ? -1 : res;\n    }\n}\n\n\nOptimized version",
+    "text": "Dijkstra’s Algorithm\n\nBasic version\nclass Solution {\n    \n    // Dijkstra's algorithm - O(n^2) version\n    public int networkDelayTime(int[][] times, int n, int k) {\n        // construct the graph using the input edges\n        Map&lt;Integer, Map&lt;Integer, Integer&gt;&gt; graph = new HashMap&lt;&gt;();\n        for (int[] t : times) {\n            graph.putIfAbsent(t[0], new HashMap&lt;&gt;());\n            graph.get(t[0]).put(t[1], t[2]);\n        }\n\n        // shortest time to reach every node from the node k\n        int[] minTime = new int[n + 1];\n        Arrays.fill(minTime, Integer.MAX_VALUE);\n        minTime[k] = 0;\n\n        // flag array to track visit status\n        boolean[] visited = new boolean[n + 1];\n\n        // Dijkstra's algorithm\n        int res = 0;\n        for (int i = 0; i &lt; n; i++) {\n            // identify the node with the shortest time\n            int next = -1;\n            for (int j = 1; j &lt;= n; j++) {\n                if (visited[j]) continue;\n                if (next &lt; 0 || minTime[j] &lt; minTime[next]) next = j;\n            }\n\n            // mark the node as visit\n            visited[next] = true;\n            res = minTime[next];\n            if (res == Integer.MAX_VALUE) return -1;\n\n            // update the time array\n            if (graph.containsKey(next)) {\n                Map&lt;Integer, Integer&gt; connections = graph.get(next);\n                for (int t : connections.keySet()) {\n                    int temp = minTime[next] + connections.get(t);\n                    if (temp &lt; minTime[t]) {\n                        minTime[t] = temp;\n                    }\n                }\n            }\n        }\n        return res;\n    }\n}\n\n\nOptimized version\n\nclass Solution {\n    // 07/30/2024 - Dijkstra's algorithm with priority queue\n    public int networkDelayTime(int[][] times, int n, int k) {\n        // here we construct the graph first\n        // format: source -&gt; target : weight\n        Map&lt;Integer, Map&lt;Integer, Integer&gt;&gt; graph = new HashMap&lt;&gt;();\n        for (int[] t : times) {\n            graph.putIfAbsent(t[0], new HashMap&lt;&gt;());\n            graph.get(t[0]).put(t[1], t[2]);\n        }\n\n        // we track if a note is visited or not, once visited, its shortest distance\n        // to the source node cannot change.\n        boolean[] visited = new boolean[n + 1];\n        int[] minTime = new int[n + 1];\n        Arrays.fill(minTime, Integer.MAX_VALUE);\n\n        // we use a priority queue to track the edges to visit next\n        // format: node id: distance to the source node\n        PriorityQueue&lt;int[]&gt; que = new PriorityQueue&lt;&gt;((a, b) -&gt; Integer.compare(a[1], b[1]));\n        que.add(new int[]{k, 0});\n\n        int res = -1;\n        int count = 0;\n        while (!que.isEmpty()) {\n            int[] edge = que.poll();\n            int curr = edge[0], time = edge[1];\n            if (visited[curr]) continue;\n\n            visited[curr] = true;\n            minTime[curr] = time;\n            res = time;\n            count++;\n\n            if (graph.containsKey(curr)) {\n                Map&lt;Integer, Integer&gt; connections = graph.get(curr);\n                for (int next : connections.keySet()) {\n                    int weight = connections.get(next);\n                    if (time + weight &lt; minTime[next]) {\n                        que.offer(new int[]{next, time + weight});\n                    }\n                }\n            }\n        }\n        return count == n ? res : -1;\n    }\n}",
     "crumbs": [
       "Problems",
       "743. Network Delay Time"
+    ]
+  },
+  {
+    "objectID": "problems/743. Network Delay Time.html#bellman-ford-algorithm",
+    "href": "problems/743. Network Delay Time.html#bellman-ford-algorithm",
+    "title": "743. Network Delay Time",
+    "section": "Bellman-Ford Algorithm",
+    "text": "Bellman-Ford Algorithm\nclass Solution {\n    public int networkDelayTime(int[][] times, int n, int k) {\n        int[] minTime = new int[n + 1];\n        Arrays.fill(minTime, Integer.MAX_VALUE);\n        minTime[k] = 0;\n\n        for (int i = 1; i &lt; n; i++) {\n            for (int[] e : times) {\n                int src = e[0], dst = e[1], w = e[2];\n                if (minTime[src] != Integer.MAX_VALUE && minTime[src] + w &lt; minTime[dst]) {\n                    minTime[dst] = minTime[src] + w;\n                }\n            }\n        }\n        int res = -1;\n        for (int i = 1; i &lt;= n; i++) {\n            res = Math.max(res, minTime[i]);\n        }\n        return res == Integer.MAX_VALUE ? -1 : res;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "743. Network Delay Time"
+    ]
+  },
+  {
+    "objectID": "problems/853. Car Fleet.html",
+    "href": "problems/853. Car Fleet.html",
+    "title": "853. Car Fleet",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 853. Car Fleet",
+    "crumbs": [
+      "Problems",
+      "853. Car Fleet"
+    ]
+  },
+  {
+    "objectID": "problems/853. Car Fleet.html#solution",
+    "href": "problems/853. Car Fleet.html#solution",
+    "title": "853. Car Fleet",
+    "section": "Solution",
+    "text": "Solution\nThe key idea in the solution is to recognize the fact that once a car catches up with another car, it cannot pass and must drive at the same speed, thus form a fleet. If the target is far away, all the cars will eventually merge into several clusters, with each cluster traveling at the same speed.\nGiven limited distance to the target, a car behind might not be able to catch up with another car ahead of it. Note that the time taken for a car i at position position[i] to reach the target at speed speed[i] is:\ntimeToTarget = (target - position[i]) / speed[i]\nFor any two cars i and j with position[i] &gt; position[j], car j can catchup with car i if timeToTarget[j] &lt; timeToTarget[i].\nRecognizing this, we could sort all the cars in decreasing order of their current positions and then check if a car could catch up with the car right ahead of it.\nclass Solution {\n    public int carFleet(int target, int[] position, int[] speed) {\n        // sort cars in decreasing order of their current positions\n        int n = position.length;\n        Integer[] indices = new Integer[n];\n        for (int i = 0; i &lt; n; i++) {\n            indices[i] = i;\n        }\n        Arrays.sort(indices, (i, j) -&gt; position[j] - position[i]);\n\n        // merge cars into fleet\n        int res = 0;\n        double prev = 0;\n        for (int i : indices) {\n            double timeToTarget = (double) (target - position[i]) / speed[i];\n            if (timeToTarget &gt; prev) {\n                res++;\n                prev = timeToTarget;\n            }\n        }\n        return res;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "853. Car Fleet"
     ]
   },
   {

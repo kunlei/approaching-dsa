@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello, DSA! - 13&nbsp; Topological Sort</title>
+<title>Hello, DSA! - 739. Daily Temperatures</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./graph-dijkstra.html" rel="next">
-<link href="./graph-mst.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../problems/743. Network Delay Time.html" rel="next">
+<link href="../problems/695. Max Area of Island.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -96,7 +130,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-topological-sort.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/130. Surrounded Regions.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/739. Daily Temperatures.html">739. Daily Temperatures</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -111,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Hello, DSA!</a> 
+      <a href="../">Hello, DSA!</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -123,13 +157,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -144,13 +178,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./moore-voting-algorithm.html" class="sidebar-item-text sidebar-link">
+  <a href="../moore-voting-algorithm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Boyer-Moore Majority Voting Algorithm</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./gcd-euclidean-algorithm.html" class="sidebar-item-text sidebar-link">
+  <a href="../gcd-euclidean-algorithm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Greatest Common Divisor and Least Common Multiple</span></span></a>
   </div>
 </li>
@@ -167,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./two-pointers.html" class="sidebar-item-text sidebar-link">
+  <a href="../two-pointers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Two Pointers</span></span></a>
   </div>
 </li>
@@ -184,7 +218,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sliding-window.html" class="sidebar-item-text sidebar-link">
+  <a href="../sliding-window.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sliding Window</span></span></a>
   </div>
 </li>
@@ -201,7 +235,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./binary-search.html" class="sidebar-item-text sidebar-link">
+  <a href="../binary-search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Binary Search</span></span></a>
   </div>
 </li>
@@ -218,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./heap-queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../heap-queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Heap / Priority Queue</span></span></a>
   </div>
 </li>
@@ -235,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Trees</span></span></a>
   </div>
 </li>
@@ -252,7 +286,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dp.html" class="sidebar-item-text sidebar-link">
+  <a href="../dp.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Dynamic Programming</span></span></a>
   </div>
 </li>
@@ -269,37 +303,37 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph.html" class="sidebar-item-text sidebar-link">
+  <a href="../graph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-union-find.html" class="sidebar-item-text sidebar-link">
+  <a href="../graph-union-find.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Union Find</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-mst.html" class="sidebar-item-text sidebar-link">
+  <a href="../graph-mst.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Minimum Spanning Tree</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-topological-sort.html" class="sidebar-item-text sidebar-link active">
+  <a href="../graph-topological-sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-dijkstra.html" class="sidebar-item-text sidebar-link">
+  <a href="../graph-dijkstra.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dijkstra’s Algorithm</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-bellman-ford.html" class="sidebar-item-text sidebar-link">
+  <a href="../graph-bellman-ford.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bellman-Ford Algorithm</span></span></a>
   </div>
 </li>
@@ -316,73 +350,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/130. Surrounded Regions.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/130. Surrounded Regions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">130. Surrounded Regions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/200. Number of Islands.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/200. Number of Islands.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">200. Number of Islands</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/207. Course Schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/207. Course Schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">207. Course Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/210. Course Schedule II.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/210. Course Schedule II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">210. Course Schedule II</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/352. Data Stream as Disjoint Intervals.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/352. Data Stream as Disjoint Intervals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">352. Data Stream as Disjoint Intervals</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/399. Evaluate Division.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/399. Evaluate Division.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">399. Evaluate Division</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/684. Redundant Connection.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/684. Redundant Connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">684. Redundant Connection</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/695. Max Area of Island.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/695. Max Area of Island.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">695. Max Area of Island</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/739. Daily Temperatures.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/739. Daily Temperatures.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">739. Daily Temperatures</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/743. Network Delay Time.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/743. Network Delay Time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">743. Network Delay Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/853. Car Fleet.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/853. Car Fleet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">853. Car Fleet</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./problems/1584. Min Cost to Connect All Points.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/1584. Min Cost to Connect All Points.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1584. Min Cost to Connect All Points</span></a>
   </div>
 </li>
@@ -390,13 +424,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -410,22 +444,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link active" data-scroll-target="#the-algorithm"><span class="header-section-number">13.1</span> The Algorithm</a></li>
-  <li><a href="#practise-problems" id="toc-practise-problems" class="nav-link" data-scroll-target="#practise-problems"><span class="header-section-number">13.2</span> Practise Problems</a></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">13.3</span> Implementation</a>
-  <ul class="collapse">
-  <li><a href="#java" id="toc-java" class="nav-link" data-scroll-target="#java"><span class="header-section-number">13.3.1</span> Java</a></li>
-  </ul></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">13.4</span> Reference</a></li>
+  <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-topological-sort.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/130. Surrounded Regions.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/739. Daily Temperatures.html">739. Daily Temperatures</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></h1>
+<h1 class="title">739. Daily Temperatures</h1>
 </div>
 
 
@@ -442,67 +471,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-algorithm" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="the-algorithm"><span class="header-section-number">13.1</span> The Algorithm</h2>
-<p>Topological sorting is a linear ordering of vertices in a directed acyclic graph (DAG) such that for every directed edge <code>uv</code> from vertex <code>u</code> to vertex <code>v</code>, vertex <code>u</code> comes before <code>v</code> in the ordering. Topological sorting is only possible if the graph has no directed cycles, i.e., it must be a DAG.</p>
-<p>Topological sorting is commonly used in:</p>
-<ol type="1">
-<li><strong>Scheduling tasks</strong>: Determining the order in which tasks should be performed, where some tasks must be done before others.</li>
-<li><strong>Build systems</strong>: Resolving dependencies in build systems, where some components must be built before others.</li>
-<li><strong>Course prerequisite ordering</strong>: Determining the order in which courses should be taken based on prerequisites.</li>
-</ol>
-<p>One common method to perform topological sorting is Kahn’s Algorithm, which uses in-degree (the number of incoming edges) of vertices:</p>
-<ol type="1">
-<li><strong>Initialize</strong>:
-<ul>
-<li>Calculate in-degrees of all vertices.</li>
-<li>Initialize a queue and enqueue all vertices with in-degree 0.</li>
-</ul></li>
-<li><strong>Process the queue</strong>:
-<ul>
-<li>While the queue is not empty:
-<ul>
-<li>Dequeue a vertex <code>u</code> and add it to the topological order.</li>
-<li>For each adjacent vertex <code>v</code> (i.e., vertices where there is an edge <code>u -&gt; v</code>):
-<ul>
-<li>Decrease the in-degree of <code>v</code> by 1.</li>
-<li>If in-degree of <code>v</code> becomes 0, enqueue <code>v</code>.</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Check for cycles</strong>:
-<ul>
-<li>If the topological order contains all vertices, the graph is a DAG.</li>
-<li>If not, the graph contains a cycle, and topological sorting is not possible.</li>
-</ul></li>
-</ol>
+<section id="problem" class="level2">
+<h2 class="anchored" data-anchor-id="problem">Problem</h2>
+<p>The original problem is defined here: <a href="https://leetcode.com/problems/daily-temperatures/description/">739. Daily Temperatures</a>.</p>
 </section>
-<section id="practise-problems" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="practise-problems"><span class="header-section-number">13.2</span> Practise Problems</h2>
-<ol type="1">
-<li><a href="https://leetcode.com/problems/course-schedule/description/">207. Course Schedule</a></li>
-<li><a href="https://leetcode.com/problems/course-schedule-ii/description/">210. Course Schedule II</a></li>
-<li><a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/">329. Longest Increasing Path in a Matrix</a></li>
-<li><a href="https://leetcode.com/problems/find-eventual-safe-states/description/">802. Find Eventual Safe States</a></li>
-<li><a href="https://leetcode.com/problems/loud-and-rich/description/">851. Loud and Rich</a></li>
-<li><a href="https://leetcode.com/problems/cat-and-mouse/description/">913. Cat and Mouse</a></li>
-<li><a href="https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/description/">1203. Sort Items by Groups Respecting Dependencies</a></li>
-<li><a href="https://leetcode.com/problems/course-schedule-iv/description/">1462. Course Schedule IV</a></li>
-<li><a href="https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/description/">2192. All Ancestors of a Node in a Directed Acyclic Graph</a></li>
-<li><a href=""></a></li>
-</ol>
-</section>
-<section id="implementation" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">13.3</span> Implementation</h2>
-<section id="java" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="java"><span class="header-section-number">13.3.1</span> Java</h3>
-</section>
-</section>
-<section id="reference" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">13.4</span> Reference</h2>
-<ol type="1">
-<li><a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">Introduction to Topological Sort</a></li>
-</ol>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">dailyTemperatures</span><span class="op">(</span><span class="dt">int</span><span class="op">[]</span> temperatures<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> n <span class="op">=</span> temperatures<span class="op">.</span><span class="fu">length</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span><span class="op">[]</span> res <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>n<span class="op">];</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Deque</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> stack <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayDeque</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> <span class="op">(!</span>stack<span class="op">.</span><span class="fu">isEmpty</span><span class="op">()</span> <span class="op">&amp;&amp;</span> temperatures<span class="op">[</span>i<span class="op">]</span> <span class="op">&gt;</span> temperatures<span class="op">[</span>stack<span class="op">.</span><span class="fu">peek</span><span class="op">()])</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                <span class="dt">int</span> idx <span class="op">=</span> stack<span class="op">.</span><span class="fu">pop</span><span class="op">();</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                res<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> i <span class="op">-</span> idx<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            stack<span class="op">.</span><span class="fu">push</span><span class="op">(</span>i<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -897,13 +887,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./graph-mst.html" class="pagination-link" aria-label="Minimum Spanning Tree">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Minimum Spanning Tree</span></span>
+      <a href="../problems/695. Max Area of Island.html" class="pagination-link" aria-label="695. Max Area of Island">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">695. Max Area of Island</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./graph-dijkstra.html" class="pagination-link" aria-label="Dijkstra's Algorithm">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dijkstra’s Algorithm</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../problems/743. Network Delay Time.html" class="pagination-link" aria-label="743. Network Delay Time">
+        <span class="nav-page-text">743. Network Delay Time</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

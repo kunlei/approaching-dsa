@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello, DSA! - 13&nbsp; Topological Sort</title>
+<title>Hello, DSA! - 15&nbsp; Bellman-Ford Algorithm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./graph-dijkstra.html" rel="next">
-<link href="./graph-mst.html" rel="prev">
+<link href="./problems/130. Surrounded Regions.html" rel="next">
+<link href="./graph-dijkstra.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -96,7 +96,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-topological-sort.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-bellman-ford.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bellman-Ford Algorithm</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -287,7 +287,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-topological-sort.html" class="sidebar-item-text sidebar-link active">
+  <a href="./graph-topological-sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></span></a>
   </div>
 </li>
@@ -299,7 +299,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./graph-bellman-ford.html" class="sidebar-item-text sidebar-link">
+  <a href="./graph-bellman-ford.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bellman-Ford Algorithm</span></span></a>
   </div>
 </li>
@@ -410,22 +410,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link active" data-scroll-target="#the-algorithm"><span class="header-section-number">13.1</span> The Algorithm</a></li>
-  <li><a href="#practise-problems" id="toc-practise-problems" class="nav-link" data-scroll-target="#practise-problems"><span class="header-section-number">13.2</span> Practise Problems</a></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation"><span class="header-section-number">13.3</span> Implementation</a>
-  <ul class="collapse">
-  <li><a href="#java" id="toc-java" class="nav-link" data-scroll-target="#java"><span class="header-section-number">13.3.1</span> Java</a></li>
-  </ul></li>
-  <li><a href="#reference" id="toc-reference" class="nav-link" data-scroll-target="#reference"><span class="header-section-number">13.4</span> Reference</a></li>
+  <li><a href="#practice-problem" id="toc-practice-problem" class="nav-link active" data-scroll-target="#practice-problem"><span class="header-section-number">15.1</span> Practice Problem</a></li>
+  <li><a href="#bellman-ford-algorithm" id="toc-bellman-ford-algorithm" class="nav-link" data-scroll-target="#bellman-ford-algorithm"><span class="header-section-number">15.2</span> Bellman-Ford Algorithm</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-topological-sort.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./graph.html">Graphs</a></li><li class="breadcrumb-item"><a href="./graph-bellman-ford.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bellman-Ford Algorithm</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Topological Sort</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Bellman-Ford Algorithm</span></h1>
 </div>
 
 
@@ -442,67 +437,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="the-algorithm" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="the-algorithm"><span class="header-section-number">13.1</span> The Algorithm</h2>
-<p>Topological sorting is a linear ordering of vertices in a directed acyclic graph (DAG) such that for every directed edge <code>uv</code> from vertex <code>u</code> to vertex <code>v</code>, vertex <code>u</code> comes before <code>v</code> in the ordering. Topological sorting is only possible if the graph has no directed cycles, i.e., it must be a DAG.</p>
-<p>Topological sorting is commonly used in:</p>
-<ol type="1">
-<li><strong>Scheduling tasks</strong>: Determining the order in which tasks should be performed, where some tasks must be done before others.</li>
-<li><strong>Build systems</strong>: Resolving dependencies in build systems, where some components must be built before others.</li>
-<li><strong>Course prerequisite ordering</strong>: Determining the order in which courses should be taken based on prerequisites.</li>
-</ol>
-<p>One common method to perform topological sorting is Kahn’s Algorithm, which uses in-degree (the number of incoming edges) of vertices:</p>
-<ol type="1">
-<li><strong>Initialize</strong>:
-<ul>
-<li>Calculate in-degrees of all vertices.</li>
-<li>Initialize a queue and enqueue all vertices with in-degree 0.</li>
-</ul></li>
-<li><strong>Process the queue</strong>:
-<ul>
-<li>While the queue is not empty:
-<ul>
-<li>Dequeue a vertex <code>u</code> and add it to the topological order.</li>
-<li>For each adjacent vertex <code>v</code> (i.e., vertices where there is an edge <code>u -&gt; v</code>):
-<ul>
-<li>Decrease the in-degree of <code>v</code> by 1.</li>
-<li>If in-degree of <code>v</code> becomes 0, enqueue <code>v</code>.</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Check for cycles</strong>:
-<ul>
-<li>If the topological order contains all vertices, the graph is a DAG.</li>
-<li>If not, the graph contains a cycle, and topological sorting is not possible.</li>
-</ul></li>
-</ol>
+<section id="practice-problem" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="practice-problem"><span class="header-section-number">15.1</span> Practice Problem</h2>
 </section>
-<section id="practise-problems" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="practise-problems"><span class="header-section-number">13.2</span> Practise Problems</h2>
-<ol type="1">
-<li><a href="https://leetcode.com/problems/course-schedule/description/">207. Course Schedule</a></li>
-<li><a href="https://leetcode.com/problems/course-schedule-ii/description/">210. Course Schedule II</a></li>
-<li><a href="https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/">329. Longest Increasing Path in a Matrix</a></li>
-<li><a href="https://leetcode.com/problems/find-eventual-safe-states/description/">802. Find Eventual Safe States</a></li>
-<li><a href="https://leetcode.com/problems/loud-and-rich/description/">851. Loud and Rich</a></li>
-<li><a href="https://leetcode.com/problems/cat-and-mouse/description/">913. Cat and Mouse</a></li>
-<li><a href="https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/description/">1203. Sort Items by Groups Respecting Dependencies</a></li>
-<li><a href="https://leetcode.com/problems/course-schedule-iv/description/">1462. Course Schedule IV</a></li>
-<li><a href="https://leetcode.com/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/description/">2192. All Ancestors of a Node in a Directed Acyclic Graph</a></li>
-<li><a href=""></a></li>
-</ol>
-</section>
-<section id="implementation" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="implementation"><span class="header-section-number">13.3</span> Implementation</h2>
-<section id="java" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="java"><span class="header-section-number">13.3.1</span> Java</h3>
-</section>
-</section>
-<section id="reference" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="reference"><span class="header-section-number">13.4</span> Reference</h2>
-<ol type="1">
-<li><a href="https://leetcode.com/discuss/general-discussion/1078072/introduction-to-topological-sort">Introduction to Topological Sort</a></li>
-</ol>
+<section id="bellman-ford-algorithm" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="bellman-ford-algorithm"><span class="header-section-number">15.2</span> Bellman-Ford Algorithm</h2>
 
 
 </section>
@@ -897,13 +836,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./graph-mst.html" class="pagination-link" aria-label="Minimum Spanning Tree">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Minimum Spanning Tree</span></span>
+      <a href="./graph-dijkstra.html" class="pagination-link" aria-label="Dijkstra's Algorithm">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dijkstra’s Algorithm</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./graph-dijkstra.html" class="pagination-link" aria-label="Dijkstra's Algorithm">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Dijkstra’s Algorithm</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./problems/130. Surrounded Regions.html" class="pagination-link" aria-label="130. Surrounded Regions">
+        <span class="nav-page-text">130. Surrounded Regions</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
