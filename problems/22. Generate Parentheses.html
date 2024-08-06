@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Hello, DSA! - 210. Course Schedule II</title>
+<title>Hello, DSA! - 22. Generate Parentheses</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../problems/352. Data Stream as Disjoint Intervals.html" rel="next">
-<link href="../problems/207. Course Schedule.html" rel="prev">
+<link href="../problems/130. Surrounded Regions.html" rel="next">
+<link href="../problems/20. Valid Parentheses.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/20. Valid Parentheses.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/210. Course Schedule II.html">210. Course Schedule II</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/20. Valid Parentheses.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/22. Generate Parentheses.html">22. Generate Parentheses</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -356,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../problems/22. Generate Parentheses.html" class="sidebar-item-text sidebar-link">
+  <a href="../problems/22. Generate Parentheses.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">22. Generate Parentheses</span></a>
   </div>
 </li>
@@ -380,7 +380,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../problems/210. Course Schedule II.html" class="sidebar-item-text sidebar-link active">
+  <a href="../problems/210. Course Schedule II.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">210. Course Schedule II</span></a>
   </div>
 </li>
@@ -469,16 +469,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#problem" id="toc-problem" class="nav-link active" data-scroll-target="#problem">Problem</a></li>
-  <li><a href="#topological-sort" id="toc-topological-sort" class="nav-link" data-scroll-target="#topological-sort">Topological Sort</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/20. Valid Parentheses.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/210. Course Schedule II.html">210. Course Schedule II</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../problems/20. Valid Parentheses.html">Problems</a></li><li class="breadcrumb-item"><a href="../problems/22. Generate Parentheses.html">22. Generate Parentheses</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">210. Course Schedule II</h1>
+<h1 class="title">22. Generate Parentheses</h1>
 </div>
 
 
@@ -497,75 +497,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="problem" class="level2">
 <h2 class="anchored" data-anchor-id="problem">Problem</h2>
-<p>The original problem is defined here: <a href="">210. Course Schedule II</a>.</p>
+<p>The original problem is defined here: <a href="https://leetcode.com/problems/generate-parentheses/">22. Generate Parentheses</a>.</p>
 </section>
-<section id="topological-sort" class="level2">
-<h2 class="anchored" data-anchor-id="topological-sort">Topological Sort</h2>
-<p>The provided code below solves the problem of determining the order in which courses should be taken given a list of prerequisites. The solution involves topological sorting using Kahn’s Algorithm. Below are the key points:</p>
-<ol type="1">
-<li>In-degree and Adjacency List Initialization
-<ul>
-<li><strong><code>indegree</code> Array</strong>: This array keeps track of the number of prerequisites (in-degrees) for each course.</li>
-<li><strong><code>map</code> (Adjacency List)</strong>: This stores the list of courses dependent on each course. Each course has a list of subsequent courses that depend on it.</li>
-<li>For each pair <code>(a, b)</code> in <code>prerequisites</code>, course <code>a</code> depends on course <code>b</code>. Thus:
-<ul>
-<li><code>indegree[a]</code> is incremented by 1.</li>
-<li>Course <code>a</code> is added to the list in <code>map.get(b)</code>.</li>
-</ul></li>
-</ul></li>
-<li>Queue Initialization
-<ul>
-<li>A queue <code>que</code> is initialized to store courses with no prerequisites (<code>indegree[i] == 0</code>), indicating they can be taken first.</li>
-</ul></li>
-<li>Topological Sorting and Order Determination
-<ul>
-<li><strong>Processing the Queue</strong>: Courses are dequeued one by one, simulating the “removal” of these courses and their effect on other courses.</li>
-<li><strong>Result Array</strong>: The <code>res</code> array is used to store the order of courses as they are processed.</li>
-<li><strong>Updating In-degrees</strong>: For each course processed, its dependent courses have their in-degrees decremented. If a course’s in-degree becomes 0, it is added to the queue.</li>
-</ul></li>
-<li>Checking for Completion
-<ul>
-<li><strong>Completion Check</strong>: The <code>count</code> variable keeps track of the number of courses processed. If <code>count</code> equals <code>numCourses</code>, all courses can be taken, and the <code>res</code> array containing the course order is returned.</li>
-<li><strong>Cycle Detection</strong>: If <code>count</code> is not equal to <code>numCourses</code>, the graph contains a cycle, making it impossible to complete all courses. In this case, an empty array is returned.</li>
-</ul></li>
-</ol>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode java code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Solution <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="dt">int</span><span class="op">[]</span> <span class="fu">findOrder</span><span class="op">(</span><span class="dt">int</span> numCourses<span class="op">,</span> <span class="dt">int</span><span class="op">[][]</span> prerequisites<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span><span class="op">[]</span> indegree <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>numCourses<span class="op">];</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Map</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">,</span> <span class="bu">List</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;&gt;</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> numCourses<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            map<span class="op">.</span><span class="fu">put</span><span class="op">(</span>i<span class="op">,</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;());</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> prerequisites<span class="op">.</span><span class="fu">length</span><span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> a <span class="op">=</span> prerequisites<span class="op">[</span>i<span class="op">][</span><span class="dv">0</span><span class="op">],</span> b <span class="op">=</span> prerequisites<span class="op">[</span>i<span class="op">][</span><span class="dv">1</span><span class="op">];</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            indegree<span class="op">[</span>a<span class="op">]++;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>b<span class="op">).</span><span class="fu">add</span><span class="op">(</span>a<span class="op">);</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> <span class="fu">generateParenthesis</span><span class="op">(</span><span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> res <span class="op">=</span> <span class="kw">new</span> <span class="bu">ArrayList</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">generate</span><span class="op">(</span>res<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="st">""</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> res<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">private</span> <span class="dt">void</span> <span class="fu">generate</span><span class="op">(</span><span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> res<span class="op">,</span> <span class="dt">int</span> left<span class="op">,</span> <span class="dt">int</span> right<span class="op">,</span> <span class="bu">String</span> s<span class="op">,</span> <span class="dt">int</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>s<span class="op">.</span><span class="fu">length</span><span class="op">()</span> <span class="op">==</span> <span class="dv">2</span> <span class="op">*</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>            res<span class="op">.</span><span class="fu">add</span><span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span><span class="op">;</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="bu">Queue</span><span class="op">&lt;</span><span class="bu">Integer</span><span class="op">&gt;</span> que <span class="op">=</span> <span class="kw">new</span> <span class="bu">LinkedList</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> numCourses<span class="op">;</span> i<span class="op">++)</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>indegree<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                que<span class="op">.</span><span class="fu">offer</span><span class="op">(</span>i<span class="op">);</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span><span class="op">[]</span> res <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span>numCourses<span class="op">];</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(!</span>que<span class="op">.</span><span class="fu">isEmpty</span><span class="op">())</span> <span class="op">{</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="dt">int</span> curr <span class="op">=</span> que<span class="op">.</span><span class="fu">poll</span><span class="op">();</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            res<span class="op">[</span>count<span class="op">++]</span> <span class="op">=</span> curr<span class="op">;</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> next <span class="op">:</span> map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>curr<span class="op">))</span> <span class="op">{</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                indegree<span class="op">[</span>next<span class="op">]--;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> <span class="op">(</span>indegree<span class="op">[</span>next<span class="op">]</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                    que<span class="op">.</span><span class="fu">offer</span><span class="op">(</span>next<span class="op">);</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="op">}</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> count <span class="op">==</span> numCourses <span class="op">?</span> res <span class="op">:</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">[</span><span class="dv">0</span><span class="op">];</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>left <span class="op">&lt;</span> n<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">generate</span><span class="op">(</span>res<span class="op">,</span> left <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> right<span class="op">,</span> s <span class="op">+</span> <span class="st">"("</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>right <span class="op">&lt;</span> left<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">generate</span><span class="op">(</span>res<span class="op">,</span> left<span class="op">,</span> right <span class="op">+</span> <span class="dv">1</span><span class="op">,</span> s <span class="op">+</span> <span class="st">")"</span><span class="op">,</span> n<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -960,13 +917,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../problems/207. Course Schedule.html" class="pagination-link" aria-label="207. Course Schedule">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">207. Course Schedule</span>
+      <a href="../problems/20. Valid Parentheses.html" class="pagination-link" aria-label="20. Valid Parentheses">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">20. Valid Parentheses</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../problems/352. Data Stream as Disjoint Intervals.html" class="pagination-link" aria-label="352. Data Stream as Disjoint Intervals">
-        <span class="nav-page-text">352. Data Stream as Disjoint Intervals</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../problems/130. Surrounded Regions.html" class="pagination-link" aria-label="130. Surrounded Regions">
+        <span class="nav-page-text">130. Surrounded Regions</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

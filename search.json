@@ -24,7 +24,7 @@
     "href": "intro.html#stack",
     "title": "1  Introduction",
     "section": "",
-    "text": "20. Valid Parentheses\n22. Generate Parentheses\n84. Largest Rectangle in Histogram\n150. Evaluate Reverse Polish Notation\n155. Min Stack\n456. 132 Pattern\n496. Next Greater Element I\n503. Next Greater Element II\n581. Shortest Unsorted Continuous Subarray\n739. Daily Temperatures\n853. Car Fleet\n901. Online Stock Span\n907. Sum of Subarray Minimums",
+    "text": "20. Valid Parentheses\n22. Generate Parentheses\n17. Letter Combinations of a Phone Number\n2116. Check if a Parentheses String Can Be Valid\n32. Longest Valid Parentheses\n84. Largest Rectangle in Histogram\n150. Evaluate Reverse Polish Notation\n155. Min Stack\n456. 132 Pattern\n496. Next Greater Element I\n503. Next Greater Element II\n581. Shortest Unsorted Continuous Subarray\n739. Daily Temperatures\n853. Car Fleet\n901. Online Stock Span\n907. Sum of Subarray Minimums",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -436,6 +436,39 @@
     ]
   },
   {
+    "objectID": "problems/20. Valid Parentheses.html",
+    "href": "problems/20. Valid Parentheses.html",
+    "title": "20. Valid Parentheses",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 20. Valid Parentheses.\n\n\nSolution\nclass Solution {\n    public boolean isValid(String s) {\n        Deque&lt;Character&gt; stack = new ArrayDeque&lt;&gt;();\n        for (int i = 0; i &lt; s.length(); i++) {\n            char c = s.charAt(i);\n            if ((c == ')' && !stack.isEmpty() && stack.peek() == '(') ||\n                (c == '}' && !stack.isEmpty() && stack.peek() == '{') ||\n                (c == ']' && !stack.isEmpty() && stack.peek() == '[')) {\n                stack.pop();\n            } else {\n                stack.push(c);\n            }\n        }\n        return stack.isEmpty();\n    }\n}\nclass Solution {\n    public boolean isValid(String s) {\n        int n = s.length();\n        Deque&lt;Character&gt; stack = new ArrayDeque&lt;&gt;();\n        for (int i = 0; i &lt; n; i++) {\n            char c = s.charAt(i);\n            if (c == '(' || c == '{' || c == '[') {\n                stack.push(c);\n            } else {\n                if ((c == ')' && !stack.isEmpty() && stack.peek() == '(') ||\n                    (c == '}' && !stack.isEmpty() && stack.peek() == '{') ||\n                    (c == ']' && !stack.isEmpty() && stack.peek() == '[')) {\n                    stack.pop();\n                } else {\n                    return false;\n                }\n            }\n        }\n        return stack.isEmpty();\n    }\n}\nclass Solution {\n    public boolean isValid(String s) {\n        Stack&lt;Character&gt; stack = new Stack();\n        for (int i = 0; i &lt; s.length(); i++) {\n            char c = s.charAt(i);\n            if (c == '(') {\n                stack.push(')');\n            } else if (c == '[') {\n                stack.push(']');\n            } else if (c == '{') {\n                stack.push('}');\n            } else if (stack.empty() || c != stack.peek()) {\n                return false;\n            } else {\n                stack.pop();\n            }\n        }\n\n        return stack.empty();\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "20. Valid Parentheses"
+    ]
+  },
+  {
+    "objectID": "problems/22. Generate Parentheses.html",
+    "href": "problems/22. Generate Parentheses.html",
+    "title": "22. Generate Parentheses",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 22. Generate Parentheses.",
+    "crumbs": [
+      "Problems",
+      "22. Generate Parentheses"
+    ]
+  },
+  {
+    "objectID": "problems/22. Generate Parentheses.html#solution",
+    "href": "problems/22. Generate Parentheses.html#solution",
+    "title": "22. Generate Parentheses",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    public List&lt;String&gt; generateParenthesis(int n) {\n        List&lt;String&gt; res = new ArrayList&lt;&gt;();\n        generate(res, 0, 0, \"\", n);\n        return res;\n    }\n\n    private void generate(List&lt;String&gt; res, int left, int right, String s, int n) {\n        if (s.length() == 2 * n) {\n            res.add(s);\n            return;\n        }\n\n        if (left &lt; n) {\n            generate(res, left + 1, right, s + \"(\", n);\n        }\n\n        if (right &lt; left) {\n            generate(res, left, right + 1, s + \")\", n);\n        }\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "22. Generate Parentheses"
+    ]
+  },
+  {
     "objectID": "problems/130. Surrounded Regions.html",
     "href": "problems/130. Surrounded Regions.html",
     "title": "130. Surrounded Regions",
@@ -587,6 +620,50 @@
     "crumbs": [
       "Problems",
       "399. Evaluate Division"
+    ]
+  },
+  {
+    "objectID": "problems/496. Next Greater Element I.html",
+    "href": "problems/496. Next Greater Element I.html",
+    "title": "496. Next Greater Element I",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 496. Next Greater Element I.",
+    "crumbs": [
+      "Problems",
+      "496. Next Greater Element I"
+    ]
+  },
+  {
+    "objectID": "problems/496. Next Greater Element I.html#solution",
+    "href": "problems/496. Next Greater Element I.html#solution",
+    "title": "496. Next Greater Element I",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    public int[] nextGreaterElement(int[] nums1, int[] nums2) {\n        int n1 = nums1.length, n2 = nums2.length;\n\n        Map&lt;Integer, Integer&gt; next = new HashMap&lt;&gt;();\n        Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();\n        for (int i = 0; i &lt; n2; i++) {\n            while (!stack.isEmpty() && nums2[i] &gt; nums2[stack.peek()]) {\n                int idx = stack.poll();\n                next.put(nums2[idx], nums2[i]);\n            }\n            stack.push(i);\n        }\n\n        int[] res = new int[n1];\n        for (int i = 0; i &lt; n1; i++) {\n            res[i] = next.getOrDefault(nums1[i], -1);\n        }\n        return res;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "496. Next Greater Element I"
+    ]
+  },
+  {
+    "objectID": "problems/503. Next Greater Element II.html",
+    "href": "problems/503. Next Greater Element II.html",
+    "title": "503. Next Greater Element II",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 503. Next Greater Element II.",
+    "crumbs": [
+      "Problems",
+      "503. Next Greater Element II"
+    ]
+  },
+  {
+    "objectID": "problems/503. Next Greater Element II.html#solution",
+    "href": "problems/503. Next Greater Element II.html#solution",
+    "title": "503. Next Greater Element II",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    public int[] nextGreaterElements(int[] nums) {\n        int n = nums.length;\n        int[] res = new int[n];\n        Arrays.fill(res, -1);\n\n        Deque&lt;Integer&gt; stack = new ArrayDeque&lt;&gt;();\n        for (int i = 0; i &lt; 2 * n; i++) {\n            int j = i % n;\n            while (!stack.isEmpty() && nums[j] &gt; nums[stack.peek()]) {\n                int idx = stack.poll();\n                res[idx] = nums[j];\n            }\n            stack.push(j);\n        }\n        return res;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "503. Next Greater Element II"
     ]
   },
   {
