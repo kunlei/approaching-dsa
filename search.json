@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 Stack",
+    "text": "1.1 Stack\nBasics\nOthers:",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -24,7 +24,7 @@
     "href": "intro.html#stack",
     "title": "1  Introduction",
     "section": "",
-    "text": "20. Valid Parentheses\n22. Generate Parentheses\n17. Letter Combinations of a Phone Number\n2116. Check if a Parentheses String Can Be Valid\n32. Longest Valid Parentheses\n84. Largest Rectangle in Histogram\n150. Evaluate Reverse Polish Notation\n155. Min Stack\n456. 132 Pattern\n496. Next Greater Element I\n503. Next Greater Element II\n581. Shortest Unsorted Continuous Subarray\n739. Daily Temperatures\n853. Car Fleet\n901. Online Stock Span\n907. Sum of Subarray Minimums",
+    "text": "20. Valid Parentheses\n22. Generate Parentheses\n155. Min Stack\n739. Daily Temperatures\n853. Car Fleet\n84. Largest Rectangle in Histogram\n150. Evaluate Reverse Polish Notation\n\n\n\n17. Letter Combinations of a Phone Number\n2116. Check if a Parentheses String Can Be Valid\n32. Longest Valid Parentheses\n456. 132 Pattern\n496. Next Greater Element I\n503. Next Greater Element II\n581. Shortest Unsorted Continuous Subarray\n901. Online Stock Span\n907. Sum of Subarray Minimums",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -436,6 +436,28 @@
     ]
   },
   {
+    "objectID": "problems/17. Letter Combinations of a Phone Number.html",
+    "href": "problems/17. Letter Combinations of a Phone Number.html",
+    "title": "17. Letter Combinations of a Phone Number",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 17. Letter Combinations of a Phone Number.",
+    "crumbs": [
+      "Problems",
+      "17. Letter Combinations of a Phone Number"
+    ]
+  },
+  {
+    "objectID": "problems/17. Letter Combinations of a Phone Number.html#solution",
+    "href": "problems/17. Letter Combinations of a Phone Number.html#solution",
+    "title": "17. Letter Combinations of a Phone Number",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    private static String[] keys = {\"\", \"\", \"abc\", \"def\", \"ghi\", \"jkl\", \"mno\", \"pqrs\", \"tuv\", \"wxyz\"};\n    public List&lt;String&gt; letterCombinations(String digits) {\n        if (digits == null || digits.length() &lt; 1) return Collections.emptyList();\n\n        List&lt;String&gt; res = new ArrayList&lt;&gt;();\n        combination(res, digits, 0, \"\");\n        return res;\n    }\n\n    private void combination(List&lt;String&gt; res, String digits, int idx, String prefix) {\n        if (idx &gt;= digits.length()) {\n            res.add(prefix);\n            return;\n        }\n\n        String letters = keys[digits.charAt(idx) - '0'];\n        for (int i = 0; i &lt; letters.length(); i++) {\n            combination(res, digits, idx + 1, prefix + letters.charAt(i));\n        }\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "17. Letter Combinations of a Phone Number"
+    ]
+  },
+  {
     "objectID": "problems/20. Valid Parentheses.html",
     "href": "problems/20. Valid Parentheses.html",
     "title": "20. Valid Parentheses",
@@ -818,6 +840,28 @@
     "crumbs": [
       "Problems",
       "1584. Min Cost to Connect All Points"
+    ]
+  },
+  {
+    "objectID": "problems/2116. Check if a Parentheses String Can Be Valid.html",
+    "href": "problems/2116. Check if a Parentheses String Can Be Valid.html",
+    "title": "2116. Check if a Parentheses String Can Be Valid",
+    "section": "",
+    "text": "Problem\nThe original problem is defined here: 2116. Check if a Parentheses String Can Be Valid.",
+    "crumbs": [
+      "Problems",
+      "2116. Check if a Parentheses String Can Be Valid"
+    ]
+  },
+  {
+    "objectID": "problems/2116. Check if a Parentheses String Can Be Valid.html#solution",
+    "href": "problems/2116. Check if a Parentheses String Can Be Valid.html#solution",
+    "title": "2116. Check if a Parentheses String Can Be Valid",
+    "section": "Solution",
+    "text": "Solution\nclass Solution {\n    public boolean canBeValid(String s, String locked) {\n        int n = s.length();\n        if (n % 2 == 1) return false;\n\n        int count = 0;\n        for (int i = 0; i &lt; n; i++) {\n            if (s.charAt(i) == '(' || locked.charAt(i) == '0') {\n                count++;\n            } else if (count &gt; 0) {\n                count--;\n            } else {\n                return false;\n            }\n        }\n\n        count = 0;\n        for (int i = n - 1; i &gt;= 0; i--) {\n            if (s.charAt(i) == ')' || locked.charAt(i) == '0') {\n                count++;\n            } else if (count &gt; 0) {\n                count--;\n            } else {\n                return false;\n            }\n        }\n        return true;\n    }\n}",
+    "crumbs": [
+      "Problems",
+      "2116. Check if a Parentheses String Can Be Valid"
     ]
   }
 ]
